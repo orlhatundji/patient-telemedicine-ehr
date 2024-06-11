@@ -1,5 +1,6 @@
 {
-  "name": "patient",
+  "homepage": "https://orlhatundji.github.io/patient-telemedicine-ehr",
+  "name": "patient-telemedicine-ehr",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
