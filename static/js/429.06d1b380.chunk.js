@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpatient=self.webpackChunkpatient||[]).push([[429],{429:(e,s,t)=>{t.r(s),t.d(s,{default:()=>h});t(43);var a=t(579);const h=()=>(0,a.jsx)("h1",{children:"This is a About Page"})}}]);
-//# sourceMappingURL=429.06d1b380.chunk.js.map
