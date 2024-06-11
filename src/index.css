@@ -1,13 +1,31 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  padding: 1em;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-ul {
+  display:flex;
+  list-style-type: none;
+  column-gap: 1em;
+  justify-content: end;
+}
+
+.patient_pecks_list {
+  list-style-type: none;
+}
+.patient_pecks_list li {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
 }

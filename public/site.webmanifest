@@ -1,6 +1,6 @@
 {
+  "name": "Patient Portal",
   "short_name": "Patient",
-  "name": "Patient Tele-medicine and EHR",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,8 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#FA5805",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
 }
