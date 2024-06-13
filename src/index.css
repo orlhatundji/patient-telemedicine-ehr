@@ -3,28 +3,6 @@
 @tailwind utilities;
 
 
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nav-ul {
-  display:flex;
-  list-style-type: none;
-  column-gap: 1em;
-  justify-content: end;
-}
-
-.patient_pecks_list {
-  list-style-type: none;
-}
-.patient_pecks_list li {
-  display: flex;
-  align-items: center;
-  column-gap: .5rem;
-}
-
 @layer base {
   html {
     font-family: "proximanova", sans-serif;
@@ -51,6 +29,13 @@
     src: url("./assets/fonts/proximanova_bold.ttf") format("truetype");
   }
 
+  @font-face {
+    /* font-black */
+    font-family: "Helvelticaneue";
+    font-weight: 700;
+    src: url("./assets/fonts/HelveticaNeueBold.ttf") format("truetype");
+  }
+
 }
 
 @layer components {
@@ -60,11 +45,15 @@
   }
 
   .header1 {
-    @apply text-center text-2xl leading-[1.83rem] font-bold;
+    @apply text-2xl leading-[1.83rem] font-bold;
   }
 
   .header2 {
-    @apply text-center text-2xl leading-[1.83rem] font-semibold;
+    @apply text-base leading-[1.08rem] font-semibold;
+  }
+
+  .description1 {
+    @apply text-sm leading-[1.065rem] font-normal;
   }
 
   .input {
@@ -73,5 +62,48 @@
 
   button {
     @apply hover:scale-[1.03] transition-transform ease-in;
+  }
+}
+
+.loader {
+  width: 5em;
+  height: 5em;
+  font-size: 25px;
+  box-sizing: border-box;
+  border-top: 0.3em solid #FA5805;
+  border-radius: 50%;
+  position: relative;
+  animation: rotating 2s ease-in-out infinite;
+  --direction: 1;
+}
+
+.loader::before,
+.loader::after {
+  content: '';
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  box-sizing: border-box;
+  top: -0.2em;
+}
+
+.loader::before {
+  border-top: 0.3em solid dodgerblue;
+  transform: rotate(120deg);
+}
+
+.loader::after {
+  border-top: 0.3em solid gold;
+  transform: rotate(240deg);
+}
+
+@keyframes rotating {
+  50% {
+      transform: rotate(calc(180deg * var(--direction)));
+  }
+
+  100% {
+      transform: rotate(calc(360deg * var(--direction)));
   }
 }
