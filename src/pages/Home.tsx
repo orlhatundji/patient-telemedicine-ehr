@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 // Assets
 import { ReactComponent as Doctors } from "../assets/images/doctors.svg";
@@ -6,7 +7,9 @@ import { ReactComponent as Bullet } from "../assets/icons/bullet_tick-circle-out
 import AuthHeader from "../components/AuthHeader";
 import { Button } from "../components/Button";
 
-const Home: React.FC = () => (
+const Home: React.FC = () => {
+  const navigate = useNavigate();
+  return(
   <div className="flex flex-col items-center">
     <AuthHeader type="white" />
     <div className="px-6">
@@ -30,9 +33,9 @@ const Home: React.FC = () => (
           <Bullet className="min-w-[1.3em]" /> Manage their time apporiately
         </li>
       </ul>
-      <Button title="Continue" color="primary" className="mt-12" />
+      <Button title="Continue" color="primary" className="mt-12" onClick={() => navigate("login")} />
     </div>
   </div>
-);
+)};
 
 export default Home;
