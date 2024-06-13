@@ -7,8 +7,8 @@ const Home = lazy(() => import("./Home"));
 const App: React.FC = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <nav>
-        <ul className="nav-ul">
+      <nav className="p-4">
+        <ul className="flex gap-y-4 justify-end">
           <li>
             <Link to="/">-Home-</Link>
           </li>

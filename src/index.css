@@ -1,12 +1,7 @@
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-nav {
-  padding: 1em;
-}
 
 .home {
   display: flex;
@@ -28,4 +23,55 @@ nav {
   display: flex;
   align-items: center;
   column-gap: .5rem;
+}
+
+@layer base {
+  html {
+    font-family: "proximanova", sans-serif;
+  }
+
+  @font-face {
+    /* font-normal */
+    font-family: "proximanova";
+    font-weight: 400;
+    src: url("./assets/fonts/proximanova_regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    /* font-semi bold */
+    font-family: "proximanova";
+    font-weight: 600;
+    src: url("./assets/fonts/proximanova_semibold.ttf") format("truetype");
+  }
+
+  @font-face {
+    /* font-bold */
+    font-family: "proximanova";
+    font-weight: 700;
+    src: url("./assets/fonts/proximanova_bold.ttf") format("truetype");
+  }
+
+}
+
+@layer components {
+
+  .container {
+    @apply max-w-[1105px];
+  }
+
+  .header1 {
+    @apply text-center text-2xl leading-[1.83rem] font-bold;
+  }
+
+  .header2 {
+    @apply text-center text-2xl leading-[1.83rem] font-semibold;
+  }
+
+  .input {
+    @apply ring-0 focus:ring-0 outline-none placeholder-gray-500;
+  }
+
+  button {
+    @apply hover:scale-[1.03] transition-transform ease-in;
+  }
 }

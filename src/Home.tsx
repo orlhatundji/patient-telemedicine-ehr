@@ -6,7 +6,7 @@ import { ReactComponent as Bullet } from "./assets/icons/bullet_tick-circle-outl
 
 const Home: React.FC = () => (
   <div className="home">
-    <h1>Welcome to Hospital</h1>
+    <h1 className="header2">Welcome to Hospital</h1>
     <Doctors />
     <h1>Welcome to your <br /> Telemedicine App</h1>
     <p>With our app, patients can now:</p>
