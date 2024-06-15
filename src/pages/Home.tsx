@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 // Components
@@ -6,13 +7,11 @@ import DoctorWithRating from "../components/DoctorWithRating";
 
 // Assets
 import { ReactComponent as NotificationIcon } from "../assets/icons/notification.svg";
-import { ReactComponent as CalendarIcon } from "../assets/icons/calendar.svg";
 import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
+import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 import doctor1 from "../assets/images/doctor1.png";
-import doctor2 from "../assets/images/doctor2.png";
 import doctor3 from "../assets/images/doctor3.png";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import DateView from "../components/DateView";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -65,12 +64,7 @@ const Home = () => {
               </div>
             </div>
             <div className="bg-off-white-200/30 rounded-lg p-4 mt-8 flex items-center justify-between">
-              <div className="flex items-center gap-x-2">
-                <CalendarIcon />
-                <p className="description2 text-tertiary-100 text-xs">
-                  12th July, 2021
-                </p>
-              </div>
+              <DateView date="12th May 2021" />
               <div className="flex items-center gap-x-2">
                 <ClockIcon />
                 <p className="description2 text-tertiary-100 text-xs">10:00</p>
@@ -82,27 +76,43 @@ const Home = () => {
 
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
-        <DoctorWithRating
-          rating={4}
-          name="Dr. Abaru Johnson"
-          specialty="Dentist"
-          visits={3}
-          img_url={doctor3}
-        />
-        <DoctorWithRating
-          rating={4}
-          name="Dr. Ikegwu Emmanuel"
-          specialty="Dentist"
-          visits={6}
-          img_url={doctor2}
-        />
-        <DoctorWithRating
-          rating={5}
-          name="Dr. Ayena Samuel"
-          specialty="Othorpedic Surgeon"
-          visits={13}
-          img_url={doctor1}
-        />
+        <div className="flex items-center justify-between">
+          <DoctorWithRating
+            rating={4}
+            name="Dr. Abaru Johnson"
+            specialty="Dentist"
+            img_url={doctor3}
+          />
+          <div className="flex items-center gap-x-2 ml-auto">
+            <UserIcon />
+            <span className="text-sm">3 visits</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <DoctorWithRating
+            rating={5}
+            name="Dr. Abaru Johnson"
+            specialty="Pediatrician"
+            img_url={doctor3}
+          />
+          <div className="flex items-center gap-x-2 ml-auto">
+            <UserIcon />
+            <span className="text-sm">30 visits</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <DoctorWithRating
+            rating={4}
+            name="Dr. Abaru Johnson"
+            specialty="Orthopedic"
+            img_url={doctor3}
+          />
+          <div className="flex items-center gap-x-2 ml-auto">
+            <UserIcon />
+            <span className="text-sm">13 visits</span>
+          </div>
+        </div>
+        
       </div>
     </div>
   );

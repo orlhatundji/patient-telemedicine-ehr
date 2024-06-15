@@ -73,7 +73,7 @@
   }
 
   button {
-    @apply hover:scale-[1.03] transition-transform ease-in;
+    @apply hover:scale-[.95] transition-transform ease-in;
   }
 }
 

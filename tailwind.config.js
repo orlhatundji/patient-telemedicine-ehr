@@ -28,7 +28,9 @@ module.exports = {
         },
         "grey": {
           100: "#818181",
-        }
+          200: "#ACACAC"
+        },
+        "app-bg": "#F0F0F0"
       },
       fontFamily: {
         'sans': ['Helveticaneue', 'Arial', 'sans-serif'],
