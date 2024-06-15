@@ -6,6 +6,7 @@
 @layer base {
   html {
     font-family: "proximanova", sans-serif;
+    color: #111111;
   }
 
   @font-face {
@@ -57,7 +58,14 @@
   }
 
   .description1 {
+    @apply text-base leading-[1.065rem] font-normal;
+  }
+  .description2 {
     @apply text-sm leading-[1.065rem] font-normal;
+  }
+
+  .rounded10 {
+    @apply rounded-[.625rem];
   }
 
   .input {

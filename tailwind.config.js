@@ -10,15 +10,25 @@ module.exports = {
         'secondary': {
           100: '#E2E2D5',
           200: '#888883',
+          300: "#FFE4D6",
         },
         "tertiary": {
           100: "#111111",
           200: "#333333",
+          300: "#14142B",
         },
         "stroke": {
           100: "#E0E0E0",
         },
         "placeholder": "#959595",
+        "off-white": {
+          100: "#F5F5F5",
+          200: "#E8E8E8",
+          300: "#FA5805",
+        },
+        "grey": {
+          100: "#818181",
+        }
       },
       fontFamily: {
         'sans': ['Helveticaneue', 'Arial', 'sans-serif'],

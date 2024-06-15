@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Loader from "./components/Loader";
 
 // Pages
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home";
+const OnboardingHome = lazy(() => import("./pages/OnboardingHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
@@ -19,6 +20,7 @@ const App: React.FC = () => (
         <Route path="/patient-telemedicine-ehr/reset-password" element={<ResetPassword />} />
         <Route path="/patient-telemedicine-ehr/forgot-password" element={<ForgotPassword />} />
         <Route path="/patient-telemedicine-ehr/reset-link-sent" element={<ResetLinkSent />} />
+        <Route path="/patient-telemedicine-ehr/onboarding-home" element={<OnboardingHome />} />
         <Route path="/patient-telemedicine-ehr/" element={<Home />} />
         <Route path="*" element={<Navigate to="/patient-telemedicine-ehr/" replace />} />
       </Routes>
