@@ -66,7 +66,12 @@ const Login: React.FC = () => {
           Forgot password
         </span>
 
-        <Button title="Login" color="primary" className="mt-10" />
+        <Button
+          title="Login"
+          color="primary"
+          className="mt-10"
+          onClick={() => navigate(`/${base_url}`)}
+        />
       </div>
     </div>
   );

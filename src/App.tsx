@@ -22,7 +22,7 @@ const App: React.FC = () => (
         <Route path="/patient-telemedicine-ehr/reset-link-sent" element={<ResetLinkSent />} />
         <Route path="/patient-telemedicine-ehr/onboarding-home" element={<OnboardingHome />} />
         <Route path="/patient-telemedicine-ehr/" element={<Home />} />
-        <Route path="*" element={<Navigate to="/patient-telemedicine-ehr/" replace />} />
+        <Route path="*" element={<Navigate to="/patient-telemedicine-ehr/onboarding-home" replace />} />
       </Routes>
     </Suspense>
   </Router>

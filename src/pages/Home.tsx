@@ -11,8 +11,10 @@ import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
 import doctor1 from "../assets/images/doctor1.png";
 import doctor2 from "../assets/images/doctor2.png";
 import doctor3 from "../assets/images/doctor3.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="px-6 py-8">
       <div className="flex justify-between">
@@ -21,7 +23,7 @@ const Home = () => {
           <h1 className="header1 mt-1">Stay Healthy</h1>
         </div>
         <div className="relative mt-2">
-          <NotificationIcon />
+          <NotificationIcon onClick={() => navigate("patient-telemedicine-ehr/login")}/>
           <div
             className={twMerge(
               "rounded-full bg-primary p-1 h-3 w-3 min-h-[.75rem] min-w-[.75rem]",

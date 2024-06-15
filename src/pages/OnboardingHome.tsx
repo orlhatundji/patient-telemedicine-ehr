@@ -33,7 +33,7 @@ const OnboardingHome: React.FC = () => {
           <Bullet className="min-w-[1.3em]" /> Manage their time apporiately
         </li>
       </ul>
-      <Button title="Continue" color="primary" className="mt-12" onClick={() => navigate("login")} />
+      <Button title="Continue" color="primary" className="mt-12" onClick={() => navigate("/patient-telemedicine-ehr/login")} />
     </div>
   </div>
 )};
