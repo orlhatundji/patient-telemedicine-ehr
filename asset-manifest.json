@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/patient-telemedicine-ehr/static/css/main.b358db1c.css",
-    "main.js": "/patient-telemedicine-ehr/static/js/main.dd2965de.js",
+    "main.css": "/patient-telemedicine-ehr/static/css/main.6e16a595.css",
+    "main.js": "/patient-telemedicine-ehr/static/js/main.74c9837b.js",
     "static/js/302.dff6e1b2.chunk.js": "/patient-telemedicine-ehr/static/js/302.dff6e1b2.chunk.js",
     "static/js/747.78e950aa.chunk.js": "/patient-telemedicine-ehr/static/js/747.78e950aa.chunk.js",
     "static/js/706.4dba7946.chunk.js": "/patient-telemedicine-ehr/static/js/706.4dba7946.chunk.js",
     "static/js/728.7f5b7535.chunk.js": "/patient-telemedicine-ehr/static/js/728.7f5b7535.chunk.js",
     "static/js/277.ab7e05d7.chunk.js": "/patient-telemedicine-ehr/static/js/277.ab7e05d7.chunk.js",
-    "static/js/124.75bd85fd.chunk.js": "/patient-telemedicine-ehr/static/js/124.75bd85fd.chunk.js",
+    "static/js/124.996f89a3.chunk.js": "/patient-telemedicine-ehr/static/js/124.996f89a3.chunk.js",
     "static/js/453.0655a07e.chunk.js": "/patient-telemedicine-ehr/static/js/453.0655a07e.chunk.js",
     "static/js/858.2421ea75.chunk.js": "/patient-telemedicine-ehr/static/js/858.2421ea75.chunk.js",
     "static/media/proximanova_regular.ttf": "/patient-telemedicine-ehr/static/media/proximanova_regular.8181ca4b7c2d1189d78a.ttf",
@@ -29,19 +29,19 @@
     "static/media/success-primary.svg": "/patient-telemedicine-ehr/static/media/success-primary.0d680413002e89ed03a6b514da0e0c2e.svg",
     "static/media/star_active.svg": "/patient-telemedicine-ehr/static/media/star_active.312bf89abf6a9c0e75831c50e8f1f632.svg",
     "static/media/star_inactive.svg": "/patient-telemedicine-ehr/static/media/star_inactive.c29e5427f729f724cde74b1a90be5e85.svg",
-    "main.b358db1c.css.map": "/patient-telemedicine-ehr/static/css/main.b358db1c.css.map",
-    "main.dd2965de.js.map": "/patient-telemedicine-ehr/static/js/main.dd2965de.js.map",
+    "main.6e16a595.css.map": "/patient-telemedicine-ehr/static/css/main.6e16a595.css.map",
+    "main.74c9837b.js.map": "/patient-telemedicine-ehr/static/js/main.74c9837b.js.map",
     "302.dff6e1b2.chunk.js.map": "/patient-telemedicine-ehr/static/js/302.dff6e1b2.chunk.js.map",
     "747.78e950aa.chunk.js.map": "/patient-telemedicine-ehr/static/js/747.78e950aa.chunk.js.map",
     "706.4dba7946.chunk.js.map": "/patient-telemedicine-ehr/static/js/706.4dba7946.chunk.js.map",
     "728.7f5b7535.chunk.js.map": "/patient-telemedicine-ehr/static/js/728.7f5b7535.chunk.js.map",
     "277.ab7e05d7.chunk.js.map": "/patient-telemedicine-ehr/static/js/277.ab7e05d7.chunk.js.map",
-    "124.75bd85fd.chunk.js.map": "/patient-telemedicine-ehr/static/js/124.75bd85fd.chunk.js.map",
+    "124.996f89a3.chunk.js.map": "/patient-telemedicine-ehr/static/js/124.996f89a3.chunk.js.map",
     "453.0655a07e.chunk.js.map": "/patient-telemedicine-ehr/static/js/453.0655a07e.chunk.js.map",
     "858.2421ea75.chunk.js.map": "/patient-telemedicine-ehr/static/js/858.2421ea75.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b358db1c.css",
-    "static/js/main.dd2965de.js"
+    "static/css/main.6e16a595.css",
+    "static/js/main.74c9837b.js"
   ]
 }
