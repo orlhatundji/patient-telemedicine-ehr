@@ -12,6 +12,7 @@ import doctor1 from "../assets/images/doctor1.png";
 import doctor2 from "../assets/images/doctor2.png";
 import doctor3 from "../assets/images/doctor3.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,7 +24,9 @@ const Home = () => {
           <h1 className="header1 mt-1">Stay Healthy</h1>
         </div>
         <div className="relative mt-2">
-          <NotificationIcon onClick={() => navigate("patient-telemedicine-ehr/login")}/>
+          <NotificationIcon
+            onClick={() => navigate("patient-telemedicine-ehr/login")}
+          />
           <div
             className={twMerge(
               "rounded-full bg-primary p-1 h-3 w-3 min-h-[.75rem] min-w-[.75rem]",
@@ -47,36 +50,38 @@ const Home = () => {
         />
       </div>
       <h2 className="header2 mt-9">Upcoming Appointments</h2>
-      <div className="relative">
-        <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
-        <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
-        <div className="mt-4 bg-primary rounded10 px-6 py-4">
-          <div className="flex gap-x-4 items-center">
-            <img src={doctor1} alt="doctor" className="max-w-[55px]" />
-            <div className="">
-              <h2 className="header2 header2 text-off-white-100">
-                Dr. Abaru Johnson
-              </h2>
-              <p className="description2 text-off-white-200 mt-1">Dentist</p>
+      <Link to="/patient-telemedicine-ehr/upcoming-appointments">
+        <div className="relative">
+          <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
+          <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
+          <div className="mt-4 bg-primary rounded10 px-6 py-4">
+            <div className="flex gap-x-4 items-center">
+              <img src={doctor1} alt="doctor" className="max-w-[55px]" />
+              <div className="">
+                <h2 className="header2 header2 text-off-white-100">
+                  Dr. Abaru Johnson
+                </h2>
+                <p className="description2 text-off-white-200 mt-1">Dentist</p>
+              </div>
             </div>
-          </div>
-          <div className="bg-off-white-200/30 rounded-lg p-4 mt-8 flex items-center justify-between">
-            <div className="flex items-center gap-x-2">
-              <CalendarIcon />
-              <p className="description2 text-tertiary-100 text-xs">
-                12th July, 2021
-              </p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <ClockIcon />
-              <p className="description2 text-tertiary-100 text-xs">10:00</p>
+            <div className="bg-off-white-200/30 rounded-lg p-4 mt-8 flex items-center justify-between">
+              <div className="flex items-center gap-x-2">
+                <CalendarIcon />
+                <p className="description2 text-tertiary-100 text-xs">
+                  12th July, 2021
+                </p>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <ClockIcon />
+                <p className="description2 text-tertiary-100 text-xs">10:00</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
+
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
-        
         <DoctorWithRating
           rating={4}
           name="Dr. Abaru Johnson"
