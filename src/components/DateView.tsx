@@ -15,7 +15,7 @@ const DateView: React.FC<DateProps> = ({ date, time, lg = false }) => {
     <div className="flex items-center gap-x-2">
     <CalendarIcon />
     <p className={twMerge("description2 text-tertiary-100", lg ? "text-base" : "text-xs")}>
-      {date} | {time}
+      {date} {time ? "|" : ""} {time}
     </p>
   </div>
   )
