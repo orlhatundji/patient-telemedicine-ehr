@@ -6,7 +6,7 @@ import { ReactComponent as MaskIcon } from "../assets/icons/mask.svg";
 
 interface InputProps {
   name: string;
-  type?: "password" | "text" | "number" | "email" | "tel" | "url";
+  type?: "password" | "text" | "number" | "email" | "tel" | "url" | "file";
   defaultValue?: any;
   value?: any;
   placeholder?: string;
@@ -23,7 +23,7 @@ interface InputProps {
 const labelDefault = "text-tertiary-100 text-base leading-[1.2rem]";
 
 const categoryType = twMerge(
-    "border border-stroke-100 outline-none bg-white4 placeholder-text-primary placeholder:text-sm",
+    "border border-stroke-100 outline-none placeholder-text-primary placeholder:text-sm",
     "text-base -tracking-[0.4px] font-semibold p-4 leading-5 rounded focus:border-stroke-100",
     "placeholder:font-normal"
   );
@@ -92,8 +92,9 @@ export const TextArea: React.FC<InputProps> = ({
   labelStyle = "",
 }) => {
   const categoryType = twMerge(
-      "border border-stroke outline-none bg-white4 placeholder-placeholder text-body-black",
-      "text-base -tracking-[0.4px] font-semibold p-4 leading-5 rounded focus:border-desc-grey w-full",
+      "border border-stroke-100 outline-none bg-white4 placeholder-text-primary",
+      "text-base font-semibold p-4 leading-5 rounded10 focus:border-stroke-200 w-full",
+      "placeholder:font-normal placeholder:text-sm text-sm font-normal",
       className
     )
   

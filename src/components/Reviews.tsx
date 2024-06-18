@@ -80,7 +80,7 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <div className="flex flex-col gap-y-7 pb-10">
+    <div className="flex flex-col gap-y-10 pb-10">
       {reviews.map((review) => (
         <Review key={review.name} {...review} />
       ))}

@@ -73,7 +73,7 @@ const DoctorDetail = () => {
       <div className="fixed bottom-4 inset-x-4">
         <Button
           className=""
-          onClick={() => navigate("/call")}
+          onClick={() => navigate("/patient-telemedicine-ehr/write-complain")}
           title="Write complaint"
         />
       </div>

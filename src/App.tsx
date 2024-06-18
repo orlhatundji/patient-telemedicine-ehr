@@ -22,6 +22,7 @@ const ResetLinkSent = lazy(() => import("./pages/auth/ResetLinkSent"));
 const UpcomingAppointments = lazy(() => import("./pages/UpcomingAppointments"));
 const CallScreen = lazy(() => import("./pages/CallScreen"));
 const DoctorDetail = lazy(() => import("./pages/DoctorDetail"));
+const WriteComplain = lazy(() => import("./pages/WriteComplain"));
 
 const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(true);
@@ -74,6 +75,10 @@ const App: React.FC = () => {
             <Route
               path="/patient-telemedicine-ehr/doctor-detail"
               element={<DoctorDetail />}
+            />
+            <Route
+              path="/patient-telemedicine-ehr/write-complain"
+              element={<WriteComplain />}
             />
             <Route path="/patient-telemedicine-ehr/" element={<Home />} />
             <Route

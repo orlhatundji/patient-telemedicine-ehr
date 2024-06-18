@@ -10,7 +10,7 @@ import { Button } from "../components/Button";
 const OnboardingHome: React.FC = () => {
   const navigate = useNavigate();
   return(
-  <div className="flex flex-col items-center">
+  <div className="pb-8 flex flex-col items-center">
     <AuthHeader type="white" />
     <div className="px-6">
       <Doctors className="mt-[25%]" />

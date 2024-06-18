@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 // Components
 import { Button } from "../components/Button";
+import DateView from "../components/DateView";
 import DoctorWithRating from "../components/DoctorWithRating";
 
 // Assets
@@ -11,7 +12,6 @@ import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
 import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 import doctor1 from "../assets/images/doctor1.png";
 import doctor3 from "../assets/images/doctor3.png";
-import DateView from "../components/DateView";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const Home = () => {
               </div>
             </div>
             <div className="bg-off-white-200/30 rounded-lg p-4 mt-8 flex items-center justify-between">
-              <DateView date="12th May 2021" />
+              <DateView date="2021-09-10" />
               <div className="flex items-center gap-x-2">
                 <ClockIcon />
                 <p className="description2 text-tertiary-100 text-xs">10:00</p>
