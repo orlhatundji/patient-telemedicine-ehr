@@ -6,19 +6,21 @@ import {
   Navigate,
 } from "react-router-dom";
 
+// Hooks
+import useScreenSize from "./hooks/useScreenSize";
+
 // Components
 import Loader from "./components/Loader";
 
 // Pages
 import Home from "./pages/Home";
-import { set } from "react-hook-form";
-import useScreenSize from "./hooks/useScreenSize";
 const OnboardingHome = lazy(() => import("./pages/OnboardingHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetLinkSent = lazy(() => import("./pages/auth/ResetLinkSent"));
 const UpcomingAppointments = lazy(() => import("./pages/UpcomingAppointments"));
+const CallScreen = lazy(() => import("./pages/CallScreen"));
 
 const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(true);
@@ -63,6 +65,10 @@ const App: React.FC = () => {
             <Route
               path="/patient-telemedicine-ehr/upcoming-appointments"
               element={<UpcomingAppointments />}
+            />
+            <Route
+              path="/patient-telemedicine-ehr/call-screen"
+              element={<CallScreen />}
             />
             <Route path="/patient-telemedicine-ehr/" element={<Home />} />
             <Route

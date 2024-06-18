@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // Components
 import DateView from "../components/DateView";
@@ -11,6 +12,7 @@ import doctor3 from "../assets/images/doctor3.png";
 import { Button } from "../components/Button";
 
 const UpcomingAppointments = () => {
+  const navigate = useNavigate();
   const [step, setStep] = React.useState(0);
   return (
     <div className="px-6 py-8 bg-app-bg min-h-screen">
@@ -28,12 +30,19 @@ const UpcomingAppointments = () => {
             img_url={doctor3}
             patientsCount={89}
           />
-          <VideoIcon />
+          <VideoIcon
+            className="cursor-pointer hover:scale-[1.2] transition-transform"
+            onClick={() => navigate("/patient-telemedicine-ehr/call-screen")}
+          />
         </div>
         <DateView date="12th July 2021" time="8pm" lg />
         <div className="flex mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
-          <Button title="Cancel Appointment" color="secondary" className=" px-3 py-4" />
+          <Button
+            title="Cancel Appointment"
+            color="secondary"
+            className=" px-3 py-4"
+          />
         </div>
       </div>
       <div className="mt-8 bg-white rounded10 p-4">
@@ -50,7 +59,11 @@ const UpcomingAppointments = () => {
         <DateView date="12th July 2021" time="8pm" lg />
         <div className="flex mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
-          <Button title="Cancel Appointment" color="secondary" className=" px-3 py-4" />
+          <Button
+            title="Cancel Appointment"
+            color="secondary"
+            className=" px-3 py-4"
+          />
         </div>
       </div>
     </div>
