@@ -12,7 +12,7 @@ const CallScreen = () => {
   const navigate = useNavigate();
   return (
     <div className="relative px-6 py-8 h-screen flex flex-col">
-      <img src={callBg} alt="" className="absolute inset-0 -z-10 blur-sm" />
+      <img src={callBg} alt="" className="absolute inset-0 w-full -z-10 blur-sm bg-tertiary-100/20" />
 
       <div className="flex-1">
         <h1 className="header1 mt-9 text-white">Dr. Abaru Johnson</h1>
