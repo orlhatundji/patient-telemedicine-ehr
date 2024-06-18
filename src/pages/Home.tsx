@@ -76,6 +76,7 @@ const Home = () => {
 
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
+        <Link to="/patient-telemedicine-ehr/doctor-detail">
         <div className="flex items-center justify-between">
           <DoctorWithRating
             rating={4}
@@ -88,6 +89,7 @@ const Home = () => {
             <span className="text-sm">3 visits</span>
           </div>
         </div>
+        </Link>
         <div className="flex items-center justify-between">
           <DoctorWithRating
             rating={5}
