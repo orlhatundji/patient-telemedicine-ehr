@@ -35,7 +35,7 @@ const UpcomingAppointments = () => {
             onClick={() => navigate("/patient-telemedicine-ehr/call-screen")}
           />
         </div>
-        <DateView date="12th July 2021" time="8pm" lg />
+        <DateView date="2021-09-10" time="8pm" lg />
         <div className="flex mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
           <Button
@@ -56,7 +56,7 @@ const UpcomingAppointments = () => {
           />
           <VideoIcon />
         </div>
-        <DateView date="12th July 2021" time="8pm" lg />
+        <DateView date="2021-09-10" time="8pm" lg />
         <div className="flex mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
           <Button

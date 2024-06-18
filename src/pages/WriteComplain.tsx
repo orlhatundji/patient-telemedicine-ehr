@@ -25,8 +25,7 @@ const WriteComplain = () => {
     mode: "onChange",
     reValidateMode: "onChange",
   });
-  const navigate = useNavigate();
-  const [success, showSuccess] = React.useState(true);
+  const [success, showSuccess] = React.useState(false);
   return (
     <div className="relative px-6 py-8">
       <div className={twMerge(success ? "blur-[1px]" : "")}>

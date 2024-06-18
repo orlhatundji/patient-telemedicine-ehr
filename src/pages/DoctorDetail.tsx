@@ -64,9 +64,7 @@ const DoctorDetail = () => {
         </div>
       ) : (
         <div className="mt-4">
-
           <Reviews />
-
         </div>
       )}
 
