@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   html {
     font-family: "proximanova", sans-serif;
@@ -36,11 +35,9 @@
     font-weight: 700;
     src: url("./assets/fonts/HelveticaNeueBold.ttf") format("truetype");
   }
-
 }
 
 @layer components {
-
   .container {
     @apply max-w-[1105px];
   }
@@ -73,7 +70,7 @@
   }
 
   .bottom-nav-padding {
-    @apply pb-20;
+    @apply pb-24;
   }
   .top-padding {
     @apply pt-8;
@@ -93,7 +90,7 @@
   height: 5em;
   font-size: 25px;
   box-sizing: border-box;
-  border-top: 0.3em solid #FA5805;
+  border-top: 0.3em solid #fa5805;
   border-radius: 50%;
   position: relative;
   animation: rotating 2s ease-in-out infinite;
@@ -102,7 +99,7 @@
 
 .loader::before,
 .loader::after {
-  content: '';
+  content: "";
   position: absolute;
   width: inherit;
   height: inherit;
@@ -123,10 +120,25 @@
 
 @keyframes rotating {
   50% {
-      transform: rotate(calc(180deg * var(--direction)));
+    transform: rotate(calc(180deg * var(--direction)));
   }
 
   100% {
-      transform: rotate(calc(360deg * var(--direction)));
+    transform: rotate(calc(360deg * var(--direction)));
   }
 }
+
+
+.active-nav-item {
+  animation: bottomNavActive 1s ease-in-out;
+}
+
+@keyframes bottomNavActive {
+  0% {
+    opacity: .3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

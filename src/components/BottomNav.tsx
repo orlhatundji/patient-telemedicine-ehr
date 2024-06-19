@@ -52,12 +52,12 @@ const BottomNav = () => {
   const location = window.location.pathname;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 bg-white py-4 px-8 flex justify-between">
+    <div className="fixed bottom-0 inset-x-0 bg-white pt-4 pb-6 px-8 flex justify-between">
       {Object.keys(navItems).map((navItem, index) =>
         navItems[navItem].location === location ? (
           <div
             key={index}
-            className="flex flex-col items-center transition-transform delay-75"
+            className="flex flex-col items-center active-nav-item"
           >
             {navItems[navItem].active}
             <p className="text-xs mt-1 text-primary font-semibold">
