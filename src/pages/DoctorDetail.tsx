@@ -10,6 +10,7 @@ import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 import doctor3 from "../assets/images/doctor3.png";
 import license from "../assets/images/license.png";
 import Reviews from "../components/Reviews";
+import BackArrow from "../components/BackArrow";
 
 const DoctorDetail = () => {
   const navigate = useNavigate();
@@ -17,12 +18,13 @@ const DoctorDetail = () => {
   const [step, setStep] = React.useState(0);
   return (
     <div className="relative px-6 pt-8 pb-24 bg-app-bg min-h-screen">
+      <BackArrow className="float-left" />
       <h1 className="header4  text-center">Doctor's details</h1>
       <div className="mt-11 flex">
         <img src={doctor3} alt="" className="w-36" />
         <div className="flex py-2">
           <div className="ml-5 flex flex-col">
-            <h2 className="header2">Dr. Abar u Johnson</h2>
+            <h2 className="header2">Dr. Abaru Johnson</h2>
             <span className="text-sm text-grey-200 flex-1">Dentist</span>
             <div className="flex gap-x-2">
               <UserIcon />

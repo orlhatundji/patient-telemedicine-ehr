@@ -130,7 +130,7 @@
 
 
 .active-nav-item {
-  animation: bottomNavActive 1s ease-in-out;
+  animation: bottomNavActive .5s ease-in-out;
 }
 
 @keyframes bottomNavActive {

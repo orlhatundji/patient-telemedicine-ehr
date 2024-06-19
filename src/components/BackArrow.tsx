@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 // Assets
-import { ReactComponent as BackIcon } from "@icons/back-arrow.svg";
+import { ReactComponent as BackIcon } from "../assets/icons/back.svg";
 
 interface BackArrowProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;

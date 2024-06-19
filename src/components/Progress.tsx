@@ -5,9 +5,10 @@ type ProgressProps = {
   step: number;
   setStep: (step: number) => void;
   options: string[];
+  centered?: boolean;
 };
 
-const Progress: React.FC<ProgressProps> = ({ step, setStep, options }) => {
+const Progress: React.FC<ProgressProps> = ({ step, setStep, options, centered }) => {
   return (
     <div
       className={twMerge(
@@ -37,7 +38,7 @@ const Progress: React.FC<ProgressProps> = ({ step, setStep, options }) => {
             step === i ? "bg-primary/50" : "bg-white"
           )}
         >
-          <span className={twMerge("z-10", step === i ? "text-white" : "", "header2")}>
+          <span className={twMerge("z-10", step === i ? "text-white" : "", "header2", centered ? " mx-auto" : "")}>
             {option}
           </span>
         </div>
