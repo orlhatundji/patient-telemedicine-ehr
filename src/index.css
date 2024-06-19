@@ -72,6 +72,13 @@
     @apply rounded-[.625rem];
   }
 
+  .bottom-nav-padding {
+    @apply pb-20;
+  }
+  .top-padding {
+    @apply pt-8;
+  }
+
   .input {
     @apply ring-0 focus:ring-0 outline-none placeholder-gray-500;
   }

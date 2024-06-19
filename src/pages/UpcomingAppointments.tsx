@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Components
+import BottomNav from "../components/BottomNav";
 import DateView from "../components/DateView";
 import DoctorWithPatientCount from "../components/DoctorWithPatientCount";
 import Progress from "../components/Progress";
@@ -15,7 +16,7 @@ const UpcomingAppointments = () => {
   const navigate = useNavigate();
   const [step, setStep] = React.useState(0);
   return (
-    <div className="px-6 py-8 bg-app-bg min-h-screen">
+    <div className="px-6 top-padding bottom-nav-padding bg-app-bg min-h-screen ">
       <h1 className="header1">Appointments</h1>
       <Progress
         {...{ step, setStep }}
@@ -36,10 +37,10 @@ const UpcomingAppointments = () => {
           />
         </div>
         <DateView date="2021-09-10" time="8pm" lg />
-        <div className="flex mt-3 gap-x-2">
+        <div className="grid grid-cols-2 mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
           <Button
-            title="Cancel Appointment"
+            title="Cancel"
             color="secondary"
             className=" px-3 py-4"
           />
@@ -57,15 +58,16 @@ const UpcomingAppointments = () => {
           <VideoIcon />
         </div>
         <DateView date="2021-09-10" time="8pm" lg />
-        <div className="flex mt-3 gap-x-2">
+        <div className="grid grid-cols-2 mt-3 gap-x-2">
           <Button title="Reschedule" color="primary" className="px-6 py-4" />
           <Button
-            title="Cancel Appointment"
+            title="Cancel"
             color="secondary"
-            className=" px-3 py-4"
+            className="px-3 py-4"
           />
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

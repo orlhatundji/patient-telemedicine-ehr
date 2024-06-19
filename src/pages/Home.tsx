@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 // Components
 import { Button } from "../components/Button";
+import BottomNav from "../components/BottomNav";
 import DateView from "../components/DateView";
 import DoctorWithRating from "../components/DoctorWithRating";
 
@@ -16,7 +17,7 @@ import doctor3 from "../assets/images/doctor3.png";
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <div className="px-6 py-8">
+    <div className="px-6 top-padding bottom-nav-padding">
       <div className="flex justify-between">
         <div className="">
           <span className="description1">Good morning, Simon</span>
@@ -49,7 +50,7 @@ const Home = () => {
         />
       </div>
       <h2 className="header2 mt-9">Upcoming Appointments</h2>
-      <Link to="/patient-telemedicine-ehr/upcoming-appointments">
+      <Link to="/patient-telemedicine-ehr/appointments">
         <div className="relative">
           <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
           <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
@@ -77,18 +78,18 @@ const Home = () => {
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
         <Link to="/patient-telemedicine-ehr/doctor-detail">
-        <div className="flex items-center justify-between">
-          <DoctorWithRating
-            rating={4}
-            name="Dr. Abaru Johnson"
-            specialty="Dentist"
-            img_url={doctor3}
-          />
-          <div className="flex items-center gap-x-2 ml-auto">
-            <UserIcon />
-            <span className="text-sm">3 visits</span>
+          <div className="flex items-center justify-between">
+            <DoctorWithRating
+              rating={4}
+              name="Dr. Abaru Johnson"
+              specialty="Dentist"
+              img_url={doctor3}
+            />
+            <div className="flex items-center gap-x-2 ml-auto">
+              <UserIcon />
+              <span className="text-sm">3 visits</span>
+            </div>
           </div>
-        </div>
         </Link>
         <div className="flex items-center justify-between">
           <DoctorWithRating
@@ -114,8 +115,8 @@ const Home = () => {
             <span className="text-sm">13 visits</span>
           </div>
         </div>
-        
       </div>
+      <BottomNav />
     </div>
   );
 };

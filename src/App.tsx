@@ -23,6 +23,8 @@ const UpcomingAppointments = lazy(() => import("./pages/UpcomingAppointments"));
 const CallScreen = lazy(() => import("./pages/CallScreen"));
 const DoctorDetail = lazy(() => import("./pages/DoctorDetail"));
 const WriteComplain = lazy(() => import("./pages/WriteComplain"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Prescriptions = lazy(() => import("./pages/Prescriptions"));
 
 const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(true);
@@ -65,7 +67,7 @@ const App: React.FC = () => {
               element={<OnboardingHome />}
             />
             <Route
-              path="/patient-telemedicine-ehr/upcoming-appointments"
+              path="/patient-telemedicine-ehr/appointments"
               element={<UpcomingAppointments />}
             />
             <Route
@@ -79,6 +81,14 @@ const App: React.FC = () => {
             <Route
               path="/patient-telemedicine-ehr/write-complain"
               element={<WriteComplain />}
+            />
+            <Route
+              path="/patient-telemedicine-ehr/profile"
+              element={<Profile />}
+            />
+            <Route
+              path="/patient-telemedicine-ehr/prescription"
+              element={<Prescriptions />}
             />
             <Route path="/patient-telemedicine-ehr/" element={<Home />} />
             <Route
