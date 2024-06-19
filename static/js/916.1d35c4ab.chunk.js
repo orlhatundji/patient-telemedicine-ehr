@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpatient_telemedicine_ehr=self.webpackChunkpatient_telemedicine_ehr||[]).push([[916],{916:(e,t,i)=>{i.r(t),i.d(t,{default:()=>s});var a=i(847),n=i(579);const s=()=>(0,n.jsxs)("div",{className:"px-6 top-padding bottom-nav-padding",children:["Profile",(0,n.jsx)(a.A,{})]})}}]);
-//# sourceMappingURL=916.1d35c4ab.chunk.js.map
