@@ -40,7 +40,7 @@ const App: React.FC = () => {
   return (
     <>
       {!isMobile ? (
-        <div className="h-[100vh] flex flex-col items-center justify-center">
+        <div className="fixed inset-0 bg-white  flex flex-col items-center justify-center">
           <p className="shadow-lg p-4">This application is only available on mobile</p>
         </div>
       ) : null}
