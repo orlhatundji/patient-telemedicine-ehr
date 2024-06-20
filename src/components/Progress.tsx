@@ -1,5 +1,7 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import { Tabs, Tab } from "react-tabs-scrollable";
+import "react-tabs-scrollable/dist/rts.css";
 
 type ProgressProps = {
   step: number;
@@ -8,7 +10,12 @@ type ProgressProps = {
   centered?: boolean;
 };
 
-const Progress: React.FC<ProgressProps> = ({ step, setStep, options, centered }) => {
+const Progress: React.FC<ProgressProps> = ({
+  step,
+  setStep,
+  options,
+  centered,
+}) => {
   return (
     <div
       className={twMerge(
@@ -38,7 +45,14 @@ const Progress: React.FC<ProgressProps> = ({ step, setStep, options, centered })
             step === i ? "bg-primary/50" : "bg-white"
           )}
         >
-          <span className={twMerge("z-10", step === i ? "text-white" : "", "header2", centered ? " mx-auto" : "")}>
+          <span
+            className={twMerge(
+              "z-10",
+              step === i ? "text-white" : "",
+              "header2",
+              centered ? " mx-auto" : ""
+            )}
+          >
             {option}
           </span>
         </div>
@@ -47,7 +61,11 @@ const Progress: React.FC<ProgressProps> = ({ step, setStep, options, centered })
   );
 };
 
-export const ProgressA: React.FC<ProgressProps> = ({ step, setStep, options }) => {
+export const ProgressA: React.FC<ProgressProps> = ({
+  step,
+  setStep,
+  options,
+}) => {
   return (
     <div
       className={twMerge(
@@ -60,7 +78,7 @@ export const ProgressA: React.FC<ProgressProps> = ({ step, setStep, options }) =
     >
       <div
         className={twMerge(
-          "absolute transition-transform duration-500 h-full border-b-2 border-tertiary-100",
+          "absolute transition-transform duration-500 h-full border-b-2 border-tertiary-100"
         )}
         style={{
           width: `${100 / options.length}%`,
@@ -73,16 +91,64 @@ export const ProgressA: React.FC<ProgressProps> = ({ step, setStep, options }) =
           onClick={() => setStep(i)}
           className={twMerge(
             "h-full flex items-center gap-x-2 px-4 py-3",
-            "cursor-pointer transition-all duration-1000",
-          
+            "cursor-pointer transition-all duration-1000"
           )}
         >
-          <span className={twMerge("z-10", step === i ? "" : "text-grey-200", "header2 text-base")}>
+          <span
+            className={twMerge(
+              "z-10",
+              step === i ? "" : "text-grey-200",
+              "header2 text-base"
+            )}
+          >
             {option}
           </span>
         </div>
       ))}
     </div>
+  );
+};
+
+export const ProgressB: React.FC<ProgressProps> = ({
+  step: activeTab,
+  setStep: setActiveTab,
+  options,
+}) => {
+
+  const onTabClick = (e: any, index: number) => {
+    setActiveTab(index);
+  };
+
+  return (
+    <>
+      <Tabs
+        activeTab={activeTab}
+        onTabClick={onTabClick}
+        mode="scrollSelectedToCenterFromView"
+        tabsContainerClassName=""
+      >
+        {options.map((item, index) => (
+          <Tab
+            key={item}
+            className="p-0"
+            style={{
+              color: activeTab === index ? "#FA5805" : "#ACACAC",
+              background: "transparent",
+              borderRadius: "0",
+              borderTop: "none",
+              borderLeft: "none",
+              borderRight: "none",
+              borderBottom: activeTab === index ? "solid 2px #FA5805" : "none",
+              padding: ".5rem .5REM",
+              boxShadow: "none",
+              fontWeight: "600",
+            }}
+          >
+            {item}
+          </Tab>
+        ))}
+      </Tabs>
+    </>
   );
 };
 

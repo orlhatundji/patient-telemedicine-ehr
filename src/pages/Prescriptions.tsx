@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import BottomNav from "../components/BottomNav";
@@ -8,59 +8,73 @@ import Progress from "../components/Progress";
 import { ReactComponent as CheckboxActive } from "../assets/icons/checkbox-active.svg";
 import { ReactComponent as CheckboxInactive } from "../assets/icons/checkbox-inactive.svg";
 
-const medications = [
-  {
-    name: "Paracetamol",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: true,
-  },
-  {
-    name: "Amoxicillin",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: true,
-  },
-  {
-    name: "Paracetamol",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: true,
-  },
-  {
-    name: "Paracetamol",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: false,
-  },
-  {
-    name: "Paracetamol",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: false,
-  },
-  {
-    name: "Paracetamol",
-    dosage: "500mg",
-    frequency: "Twice daily",
-    duration: "5 days",
-    instructions: "Take after meal",
-    completed: false,
-  },
-];
 
 const Prescriptions = () => {
-  const [step, setStep] = React.useState(0);
+  const [step, setStep] = useState(0);
+  const [medications, setMedication] = useState([
+    {
+      id: "1",
+      name: "Paracetamol",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: true,
+    },
+    {
+      id: "2",
+      name: "Amoxicillin",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: true,
+    },
+    {
+      id: "3",
+      name: "Paracetamol",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: true,
+    },
+    {
+      id: "4",
+      name: "Paracetamol",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: false,
+    },
+    {
+      id: "5",
+      name: "Paracetamol",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: false,
+    },
+    {
+      id: "6",
+      name: "Paracetamol",
+      dosage: "500mg",
+      frequency: "Twice daily",
+      duration: "5 days",
+      instructions: "Take after meal",
+      completed: false,
+    },
+  ]);
+
+  const markAsComplete = (id: string) => {
+    const newMedications = [...medications];
+    const index = newMedications.findIndex((item) => item.id === id); 
+    newMedications[index].completed = true;
+    setMedication(newMedications);
+  }
+  
 
   return (
     <div className="px-6 top-padding bottom-nav-padding">
@@ -75,24 +89,27 @@ const Prescriptions = () => {
       />
 
       <div className="flex flex-col gap-y-6 mt-8">
-        {medications.filter((item) => item.completed === Boolean(step)).map((medications) => (
+        {medications.filter((item) => item.completed === Boolean(step)).map((medication) => (
           <div className="flex items-center justify-between">
             <div className="">
               <div className="flex gap-x-2">
-                <span className="">{medications.name}</span>
-                <span className="font-semibold">{medications.dosage}</span>
+                <span className="">{medication.name}</span>
+                <span className="font-semibold">{medication.dosage}</span>
               </div>
               <div className="flex gap-x-1 text-grey-100 text-sm">
-                <span className="">{medications.frequency}</span> for
-                <span className="">{medications.dosage}</span>
+                <span className="">{medication.frequency}</span> for
+                <span className="">{medication.dosage}</span>
               </div>
-              <p className="text-grey-100 text-sm">{medications.instructions}</p>
+              <p className="text-grey-100 text-sm">{medication.instructions}</p>
               <hr className="mt-2" />
             </div>
-            {medications.completed ? (
+            {medication.completed ? (
               <CheckboxActive />
             ) : (
-              <CheckboxInactive className="mr-3" />
+              <CheckboxInactive className="mr-3" 
+              onClick={() => markAsComplete(medication.id)}
+
+               />
             )}
           </div>
         ))}
