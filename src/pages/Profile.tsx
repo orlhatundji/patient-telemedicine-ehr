@@ -8,6 +8,7 @@ import { ReactComponent as RocketIcon } from "../assets/icons/rocket.svg";
 import person from "../assets/images/person.png";
 import { ProgressB } from "../components/Progress";
 import MedicalCard from "../components/MedicalCard";
+import PersonalProfile from "../components/PersonalProfile";
 
 const Profile = () => {
   const [step, setStep] = useState(0);
@@ -56,7 +57,7 @@ const Profile = () => {
       />
 
       {step === 0 && <MedicalCard />}
-      {step === 1 && <div className="">Profile</div>}
+      {step === 1 && <PersonalProfile />}
       {step === 2 && <div className="">Login & Security</div>}
 
       <BottomNav />

@@ -20,6 +20,7 @@ module.exports = {
         "stroke": {
           100: "#E0E0E0",
           200: "#A0A3BD",
+          300: "#DDDDDD",
         },
         "placeholder": "#959595",
         "off-white": {

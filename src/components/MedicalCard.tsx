@@ -68,9 +68,9 @@ const records = [
 ];
 const MedicalCard = () => {
   return (
-    <div className="flex flex-col flex-1 gap-y-6 overflow-auto h-full ">
+    <div className="flex flex-col divide-y-2 divide-stroke-300/10 flex-1 overflow-auto h-full ">
       {records.map((record, i) => (
-        <div key={i} className="flex flex-col gap-y-2">
+        <div key={i} className="flex flex-col gap-y-2 py-4">
           <div className="flex">
             <h3 className="font-semibold">{record.title}</h3>
             <Button
@@ -79,11 +79,11 @@ const MedicalCard = () => {
                 "ml-auto text-primary text-xs font-semibold w-fit bg-transparent",
                 "p-0"
               )}
-              onClick={() => console.log("Edit")}
+              onClick={() => {}}
               title="Edit"
             />
           </div>
-          <div className="flex flex-wrap gap-1  max-w-[90%]">
+          <div className="flex flex-wrap gap-1  max-w-[90%] ">
             {record.response.map((response, i) => (
               <div key={i} className="px-4 py-2 bg-primary/10 rounded-full">
                 <span className="text-primary text-sm">{response}</span>
