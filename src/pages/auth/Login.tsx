@@ -13,8 +13,7 @@ import Input from "../../components/Input";
 const Login: React.FC = () => {
   const {
     register,
-    handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onChange",

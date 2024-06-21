@@ -2,9 +2,6 @@ import React, { ButtonHTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-// Assets
-import { ReactComponent as BackIcon } from "../assets/icons/back.svg";
-
 interface BackButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   className?: string;

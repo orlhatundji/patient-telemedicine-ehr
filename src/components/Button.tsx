@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const theme: Record<string, string> = {
     primary: "text-white bg-primary rounded-lg w-full py-4",
-    secondary: "text-primary bg-white rounded-lg border border-primary",
+    secondary: "text-primary bg-white rounded-lg border border-primary w-full py-4",
   };
 
   return (

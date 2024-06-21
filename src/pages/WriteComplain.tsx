@@ -19,8 +19,7 @@ type FormData = {
 const WriteComplain = () => {
   const {
     register,
-    handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onChange",

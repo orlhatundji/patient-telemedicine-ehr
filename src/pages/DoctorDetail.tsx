@@ -17,7 +17,7 @@ const DoctorDetail = () => {
 
   const [step, setStep] = React.useState(0);
   return (
-    <div className="relative px-6 pt-8 pb-24 bg-app-bg min-h-screen">
+    <div className="relative px-6 pt-8 pb-36 bg-app-bg min-h-screen">
       <BackArrow className="float-left" />
       <h1 className="header4  text-center">Doctor's details</h1>
       <div className="mt-11 flex">
@@ -70,7 +70,13 @@ const DoctorDetail = () => {
         </div>
       )}
 
-      <div className="fixed bottom-4 inset-x-4">
+      <div className="bg-app-bg fixed bottom-0 pb-4 inset-x-4 flex flex-col gap-y-2">
+        <Button
+          className=""
+          color="secondary"
+          onClick={() => navigate("/patient-telemedicine-ehr/schedule-meeting")}
+          title="Schedule appointment"
+        />
         <Button
           className=""
           onClick={() => navigate("/patient-telemedicine-ehr/write-complain")}
