@@ -7,7 +7,7 @@ import Progress from "../components/Progress";
 // Assets
 import { ReactComponent as CheckboxActive } from "../assets/icons/checkbox-active.svg";
 import { ReactComponent as CheckboxInactive } from "../assets/icons/checkbox-inactive.svg";
-
+import EmptyState from "../components/EmptyState";
 
 const Prescriptions = () => {
   const [step, setStep] = useState(0);
@@ -19,7 +19,7 @@ const Prescriptions = () => {
       frequency: "Twice daily",
       duration: "5 days",
       instructions: "Take after meal",
-      completed: true,
+      completed: false,
     },
     {
       id: "2",
@@ -28,7 +28,7 @@ const Prescriptions = () => {
       frequency: "Twice daily",
       duration: "5 days",
       instructions: "Take after meal",
-      completed: true,
+      completed: false,
     },
     {
       id: "3",
@@ -37,7 +37,7 @@ const Prescriptions = () => {
       frequency: "Twice daily",
       duration: "5 days",
       instructions: "Take after meal",
-      completed: true,
+      completed: false,
     },
     {
       id: "4",
@@ -70,11 +70,12 @@ const Prescriptions = () => {
 
   const markAsComplete = (id: string) => {
     const newMedications = [...medications];
-    const index = newMedications.findIndex((item) => item.id === id); 
+    const index = newMedications.findIndex((item) => item.id === id);
     newMedications[index].completed = true;
     setMedication(newMedications);
-  }
-  
+  };
+
+  const noCompleted = medications.filter((item) => item.completed).length === 0;
 
   return (
     <div className="px-6 top-padding bottom-nav-padding">
@@ -89,30 +90,45 @@ const Prescriptions = () => {
       />
 
       <div className="flex flex-col gap-y-6 mt-8">
-        {medications.filter((item) => item.completed === Boolean(step)).map((medication) => (
-          <div className="flex items-center justify-between">
-            <div className="">
-              <div className="flex gap-x-2">
-                <span className="">{medication.name}</span>
-                <span className="font-semibold">{medication.dosage}</span>
+        {medications
+          .filter((item) => item.completed === Boolean(step))
+          .map((medication) => (
+            <div className="flex items-center justify-between">
+              <div className="">
+                <div className="flex gap-x-2">
+                  <span className="">{medication.name}</span>
+                  <span className="font-semibold">{medication.dosage}</span>
+                </div>
+                <div className="flex gap-x-1 text-grey-100 text-sm">
+                  <span className="">{medication.frequency}</span> for
+                  <span className="">{medication.dosage}</span>
+                </div>
+                <p className="text-grey-100 text-sm">
+                  {medication.instructions}
+                </p>
+                <hr className="mt-2" />
               </div>
-              <div className="flex gap-x-1 text-grey-100 text-sm">
-                <span className="">{medication.frequency}</span> for
-                <span className="">{medication.dosage}</span>
-              </div>
-              <p className="text-grey-100 text-sm">{medication.instructions}</p>
-              <hr className="mt-2" />
+              {medication.completed ? (
+                <CheckboxActive />
+              ) : (
+                <CheckboxInactive
+                  className="mr-3"
+                  onClick={() => markAsComplete(medication.id)}
+                />
+              )}
             </div>
-            {medication.completed ? (
-              <CheckboxActive />
-            ) : (
-              <CheckboxInactive className="mr-3" 
-              onClick={() => markAsComplete(medication.id)}
-
-               />
-            )}
-          </div>
-        ))}
+          ))}
+        {medications.filter((item) => item.completed === Boolean(step))
+          .length === 0 && (
+          <EmptyState
+            description={
+              noCompleted
+                ? "No prescription completed"
+                : "No prescription available"
+            }
+            className="mt-20"
+          />
+        )}
       </div>
       <BottomNav />
     </div>

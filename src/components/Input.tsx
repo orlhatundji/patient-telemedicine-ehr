@@ -24,7 +24,7 @@ const labelDefault = "text-tertiary-100 text-base leading-[1.2rem]";
 
 const categoryType = twMerge(
     "border border-stroke-100 outline-none placeholder-text-primary placeholder:text-sm",
-    "text-base -tracking-[0.4px] font-semibold p-4 leading-5 rounded focus:border-stroke-100",
+    "text-base -tracking-[0.4px] font-semibold p-4 leading-5 rounded-lg focus:border-stroke-100",
     "placeholder:font-normal"
   );
 

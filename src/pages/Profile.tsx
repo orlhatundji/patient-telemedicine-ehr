@@ -45,7 +45,7 @@ const Profile = () => {
             <RocketIcon />
           </div>
           <div className="flex flex-col gap-y-.5">
-            <h3 className="font-bold text-sm leading-[1.05rem]">60mins</h3>
+            <h3 className="font-bold text-sm leading-[1.05rem]">3</h3>
             <span className="text-xs">Appointments</span>
             <span className="text-xs">completed</span>
           </div>

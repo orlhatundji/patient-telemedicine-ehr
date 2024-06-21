@@ -25,6 +25,7 @@ const DoctorDetail = lazy(() => import("./pages/DoctorDetail"));
 const WriteComplain = lazy(() => import("./pages/WriteComplain"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Prescriptions = lazy(() => import("./pages/Prescriptions"));
+const MedicalHistoryForm = lazy(() => import("./pages/MedicalHistoryForm"));
 
 const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(true);
@@ -41,11 +42,11 @@ const App: React.FC = () => {
   }, [width]);
   return (
     <>
-      {!isMobile ? (
+      {/* {!isMobile ? (
         <div className="fixed inset-0 bg-white  flex flex-col items-center justify-center">
           <p className="shadow-lg p-4">This application is only available on mobile</p>
         </div>
-      ) : null}
+      ) : null} */}
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -88,8 +89,13 @@ const App: React.FC = () => {
             />
             <Route
               path="/patient-telemedicine-ehr/prescription"
-              element={<Prescriptions />}
-            />
+              element={<Prescriptions />}    
+          />
+          <Route 
+            path="/patient-telemedicine-ehr/medical-history-form"
+            element={<MedicalHistoryForm />}
+          />
+
             <Route path="/patient-telemedicine-ehr/" element={<Home />} />
             <Route
               path="*"

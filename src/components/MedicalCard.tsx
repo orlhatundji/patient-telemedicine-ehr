@@ -1,6 +1,6 @@
-import React from "react";
 import { Button } from "./Button";
 import { twMerge } from "tailwind-merge";
+import { useNavigate } from "react-router-dom";
 
 const records = [
   {
@@ -67,6 +67,7 @@ const records = [
   },
 ];
 const MedicalCard = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col divide-y-2 divide-stroke-300/10 flex-1 overflow-auto h-full ">
       {records.map((record, i) => (
@@ -79,7 +80,7 @@ const MedicalCard = () => {
                 "ml-auto text-primary text-xs font-semibold w-fit bg-transparent",
                 "p-0"
               )}
-              onClick={() => {}}
+              onClick={() => navigate("/patient-telemedicine-ehr/medical-history-form")}
               title="Edit"
             />
           </div>
