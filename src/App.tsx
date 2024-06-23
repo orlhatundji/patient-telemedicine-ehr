@@ -11,6 +11,7 @@ import useScreenSize from "./hooks/useScreenSize";
 
 // Components
 import Loader from "./components/Loader";
+import InstallButton from "./components/InstallButton";
 
 // Pages
 import Home from "./pages/Home";
@@ -46,10 +47,10 @@ const App: React.FC = () => {
       {!isMobile ? (
         <div className="z-[1000] fixed inset-0 bg-white  flex flex-col items-center justify-center">
           <p className="shadow-lg p-4">This application is only available on mobile</p>
-          
         </div>
       ) : null}
       <Router>
+      <InstallButton />
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/patient-telemedicine-ehr/login" element={<Login />} />

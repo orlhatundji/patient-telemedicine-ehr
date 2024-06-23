@@ -1,7 +1,7 @@
 {
   "short_name": "Patient",
   "name": "Patient Tele-medicine and EHR",
-  "description": "Patient Tele-medicine and EHR application",
+  "description": "A Tele-medicine and Electronic Health Record application designed for patients to access their health records and communicate with their healthcare providers.",
 
   "icons": [
     {
