@@ -42,6 +42,7 @@ const App: React.FC = () => {
       setIsMobile(true);
     }
   }, [width]);
+  console.log("process", process.env.PUBLIC_URL)
   return (
     <>
       {!isMobile ? (
