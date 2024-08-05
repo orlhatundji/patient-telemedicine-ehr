@@ -5,12 +5,16 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+import { CallContextProvider } from './contexts/callContext';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <CallContextProvider isCallActive startCall={() => {}} endCall={() => {}}>
+      <App />
+    </CallContextProvider>
   </React.StrictMode>
 );
 

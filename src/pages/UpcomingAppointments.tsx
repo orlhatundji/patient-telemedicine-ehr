@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Components
@@ -11,10 +11,12 @@ import Progress from "../components/Progress";
 import { ReactComponent as VideoIcon } from "../assets/icons/video.svg";
 import doctor3 from "../assets/images/doctor3.png";
 import { Button } from "../components/Button";
+import { CallContext } from "../contexts/callContext";
 
 const UpcomingAppointments = () => {
   const navigate = useNavigate();
   const [step, setStep] = React.useState(0);
+  const { startCall } = useContext(CallContext);
   return (
     <div className="px-6 top-padding bottom-nav-padding bg-app-bg min-h-screen ">
       <h1 className="header1">Appointments</h1>
@@ -33,7 +35,7 @@ const UpcomingAppointments = () => {
           />
           <VideoIcon
             className="cursor-pointer hover:scale-[1.2] transition-transform"
-            onClick={() => navigate("/patient-telemedicine-ehr/call-screen")}
+            onClick={() => startCall()}
           />
         </div>
         <DateView date="2021-09-10" time="8pm" lg />
