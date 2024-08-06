@@ -9,7 +9,10 @@ export function usePeerConnection(localStream: MediaStream) {
  
   const peerConnection = useMemo(() => {
     const connection = new RTCPeerConnection({
-      iceServers: [{ urls: 'stun:stun2.1.google.com:19302' }],
+      iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun2.1.google.com:19302' },
+      ],
     });
  
     connection.addEventListener('icecandidate', ({ candidate }) => {

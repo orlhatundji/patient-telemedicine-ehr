@@ -9,9 +9,9 @@ export function useSendingAnswer(peerConnection: RTCPeerConnection) {
  
   const handleConnectionOffer = useCallback(
     async ({ offer }: { offer: RTCSessionDescriptionInit }) => {
-      await peerConnection.setRemoteDescription(offer);
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await peerConnection.createAnswer();
-      await peerConnection.setLocalDescription(answer);
+      await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
  
       socket.emit('answer', { answer, roomName });
     },

@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 // Contexts
@@ -11,6 +11,8 @@ import { ReactComponent as SpeakerIcon } from "../assets/icons/speaker.svg";
 import { ReactComponent as EndCallIcon } from "../assets/icons/endcall.svg";
 import { useChatConnection } from "../hooks/useChatConnection";
 import { usePeerConnection } from "../hooks/usePeerConnection";
+import { useLocalCameraStream } from "../hooks/useLocalCameraStream";
+import { set } from "react-hook-form";
 
 interface Props {
   mediaStream: MediaStream;
@@ -21,8 +23,23 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
   const [isMuted, setIsMuted] = useState(true);
 
   const { peerConnection, guestStream } = usePeerConnection(mediaStream);
-  // console.log("Guest Stream", guestStream, peerConnection.connectionState);
+  const { setLocalStream } = useLocalCameraStream();
   useChatConnection(peerConnection);
+  useEffect(() => {
+    return () => {
+      if (peerConnection.connectionState === "connected") {
+        peerConnection.close();
+      }
+    };
+  }, [isCallActive, peerConnection, endCall]);
+  const handleEndCall = () => {
+    if (mediaStream) {
+      mediaStream.getTracks().forEach(track => track.stop());
+    }
+    setLocalStream(null);
+    peerConnection.close();
+    endCall();
+  }
   return (
     <>
       <div
@@ -70,9 +87,15 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
           )}
           <div className="absolute self-center bottom-10 flex justify-center gap-x-8">
             <VideoIcon className="icon-pointer" />
-            <MicIcon className="icon-pointer" />
+            <MicIcon
+              className={twMerge(
+                "icon-pointer",
+                isMuted && "border rounded-full"
+              )}
+              onClick={() => setIsMuted((prev) => !prev)}
+            />
             <SpeakerIcon className="icon-pointer" />
-            <EndCallIcon onClick={() => endCall()} className="icon-pointer" />
+            <EndCallIcon onClick={() => handleEndCall()} className="icon-pointer" />
           </div>
         </div>
       </div>

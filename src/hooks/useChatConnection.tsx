@@ -21,7 +21,6 @@ export function useChatConnection(peerConnection: RTCPeerConnection) {
  
   const handleReceiveCandidate = useCallback(
     ({ candidate }: { candidate: RTCIceCandidate }) => {
-      console.log('--New ICE candidate--', peerConnection.getReceivers(), peerConnection.getSenders());
       peerConnection.addIceCandidate(candidate);
     },
     [peerConnection],
