@@ -12,34 +12,28 @@ import { ReactComponent as EndCallIcon } from "../assets/icons/endcall.svg";
 import { useChatConnection } from "../hooks/useChatConnection";
 import { usePeerConnection } from "../hooks/usePeerConnection";
 import { useLocalCameraStream } from "../hooks/useLocalCameraStream";
-import { set } from "react-hook-form";
 
-interface Props {
-  mediaStream: MediaStream;
-}
-
-const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
-  const { isCallActive, startCall, endCall } = useContext(CallContext);
+const VideoFeed = () => {
+  const { endCall } = useContext(CallContext);
+  const [isGuestPlaying, setIsGuestPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-
-  const { peerConnection, guestStream } = usePeerConnection(mediaStream);
-  const { setLocalStream } = useLocalCameraStream();
+  const { localStream, endLocalStream } = useLocalCameraStream();
+  const { peerConnection, guestStream } = usePeerConnection(localStream);
   useChatConnection(peerConnection);
   useEffect(() => {
     return () => {
       if (peerConnection.connectionState === "connected") {
         peerConnection.close();
       }
+      endLocalStream();
     };
-  }, [isCallActive, peerConnection, endCall]);
-  const handleEndCall = () => {
-    if (mediaStream) {
-      mediaStream.getTracks().forEach(track => track.stop());
-    }
-    setLocalStream(null);
-    peerConnection.close();
+  }, []);
+
+  const handleEndCall = async () => {
+    await peerConnection.close();
     endCall();
-  }
+    endLocalStream();
+  };
   return (
     <>
       <div
@@ -48,14 +42,20 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
           "flex items-center justify-center text-white"
         )}
       >
-        <div className="video-frame relative flex flex-col overflow-hidden h-full">
+        <div
+          className={twMerge(
+            "video-frame relative flex flex-col overflow-hidden h-full",
+            isGuestPlaying ? "" : "bg-black"
+          )}
+        >
           <div className="">
             <video
               ref={(ref) => {
                 if (ref) {
-                  ref.srcObject = mediaStream;
+                  ref.srcObject = guestStream;
                 }
               }}
+              onPlaying={() => setIsGuestPlaying(true)}
               autoPlay={true}
               muted={isMuted}
               className="-z-10 w-full h-screen object-cover"
@@ -64,7 +64,7 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
               <video
                 ref={(ref) => {
                   if (ref) {
-                    ref.srcObject = guestStream;
+                    ref.srcObject = localStream;
                   }
                 }}
                 autoPlay={true}
@@ -73,18 +73,17 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
               />
             )}
           </div>
-          {!guestStream && (
-            <div className="absolute top-10 left-2 flex-1">
-              <div className="z-50">
-                <h1 className="header1 text-4xl bg-secondary-200 p-1">
-                  Dr. Michael
-                </h1>
-                <p className="mt-5 italic border-t border-b w-fit p-1 bg-secondary-200">
-                  Connecting...
-                </p>
-              </div>
+          <div
+            className={twMerge("absolute top-10 p-11 flex-1", isGuestPlaying && "opacity-0")}
+          >
+            <div className="z-50">
+              <h1 className="header1 text-4xl">Michael Akinsola</h1>
+              <p className="">Educator</p>
+              <p className="mt-5 italic border-t border-b w-fit">
+                {!guestStream ? "Calling..." : "Connecting..."}
+              </p>
             </div>
-          )}
+          </div>
           <div className="absolute self-center bottom-10 flex justify-center gap-x-8">
             <VideoIcon className="icon-pointer" />
             <MicIcon
@@ -95,7 +94,10 @@ const VideoFeed: FunctionComponent<Props> = ({ mediaStream }) => {
               onClick={() => setIsMuted((prev) => !prev)}
             />
             <SpeakerIcon className="icon-pointer" />
-            <EndCallIcon onClick={() => handleEndCall()} className="icon-pointer" />
+            <EndCallIcon
+              onClick={() => handleEndCall()}
+              className="icon-pointer"
+            />
           </div>
         </div>
       </div>

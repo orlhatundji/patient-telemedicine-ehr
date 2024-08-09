@@ -6,18 +6,17 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// Hooks
+// Hooks|Contexts
 import useScreenSize from "./hooks/useScreenSize";
+import { CallContext } from "./contexts/callContext";
 
 // Components
 import Loader from "./components/Loader";
 import InstallButton from "./components/InstallButton";
+import VideoFeed from "./components/VideoFeed";
 
 // Pages
 import Home from "./pages/Home";
-import { CallContext } from "./contexts/callContext";
-import { useLocalCameraStream } from "./hooks/useLocalCameraStream";
-import VideoFeed from "./components/VideoFeed";
 const OnboardingHome = lazy(() => import("./pages/OnboardingHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
@@ -46,17 +45,16 @@ const App: React.FC = () => {
     }
   }, [width]);
   const { isCallActive } = useContext(CallContext);
-  const { localStream } = useLocalCameraStream();
   return (
     <>
-      {/* {!isMobile ? (
+      {!isMobile ? (
         <div className="z-[1000] fixed inset-0 bg-white  flex flex-col items-center justify-center">
           <p className="shadow-lg p-4">This application is only available on mobile</p>
         </div>
-      ) : null} */}
+      ) : null}
       <Router>
-      {/* <InstallButton /> */}
-      {isCallActive && localStream && <VideoFeed mediaStream={localStream} />}
+      <InstallButton />
+      {isCallActive && <VideoFeed />}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/patient-telemedicine-ehr/login" element={<Login />} />

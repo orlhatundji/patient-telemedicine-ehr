@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'react';
 import { socket } from '../socket';
  
-export function usePeerConnection(localStream: MediaStream) {
+export function usePeerConnection(localStream: MediaStream | null) {
   // const { roomName } = useParams();
   const roomName = 'doctor_patient_call';
   const [guestStream, setGuestStream] = useState<MediaStream | null>(null);
@@ -12,7 +12,7 @@ export function usePeerConnection(localStream: MediaStream) {
       iceServers: [
         { urls: 'stun:stun.l.google.com:19302' },
         { urls: 'stun:stun2.1.google.com:19302' },
-      ],
+      ]
     });
  
     connection.addEventListener('icecandidate', ({ candidate }) => {
@@ -23,7 +23,11 @@ export function usePeerConnection(localStream: MediaStream) {
       setGuestStream(streams[0]);
     });
 
-    localStream.getTracks().forEach((track) => {
+    connection.addEventListener('close', () => {
+      console.log('Connection closed');
+    } );
+
+    localStream?.getTracks().forEach((track) => {
       connection.addTrack(track, localStream);
     });
  
