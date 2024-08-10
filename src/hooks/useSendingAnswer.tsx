@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback } from 'react';
 import { socket } from '../socket';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
  
 // export function useOffersListening(peerConnection: RTCPeerConnection) {
 export function useSendingAnswer(peerConnection: RTCPeerConnection) {

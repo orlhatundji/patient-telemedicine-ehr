@@ -1,4 +1,5 @@
-import { FunctionComponent, useContext, useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 // Contexts

@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useCallback } from 'react';
 import { socket } from '../socket';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
  
 export function useOfferSending(peerConnection: RTCPeerConnection) {
   // const { roomName } = useParams();

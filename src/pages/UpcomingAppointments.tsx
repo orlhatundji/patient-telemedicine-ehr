@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 // Components
 import BottomNav from "../components/BottomNav";
@@ -14,7 +14,7 @@ import { Button } from "../components/Button";
 import { CallContext } from "../contexts/callContext";
 
 const UpcomingAppointments = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [step, setStep] = React.useState(0);
   const { startCall } = useContext(CallContext);
   return (
