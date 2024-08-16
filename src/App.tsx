@@ -50,13 +50,13 @@ const App: React.FC = () => {
   const { isCallActive } = useCallContext();
   return (
     <>
-      {/* {!isMobile ? (
+      {!isMobile ? (
         <div className="z-[1000] fixed inset-0 bg-white  flex flex-col items-center justify-center">
           <p className="shadow-lg p-4">This application is only available on mobi le</p>
         </div>
-      ) : null} */}
+      ) : null}
       <Router basename="/">
-        {/* <InstallButton /> */}
+        <InstallButton />
         {isCallActive && <VideoFeed />}
         <Suspense fallback={<Loader />}>
           <Routes>
