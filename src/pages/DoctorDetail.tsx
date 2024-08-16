@@ -7,8 +7,8 @@ import { ProgressA } from "../components/Progress";
 
 // Assets
 import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
-import doctor3 from "../assets/images/doctor3.png";
-import license from "../assets/images/license.png";
+// import doctor3 from "../assets/images/doctor3.png";
+// import license from "../assets/images/license.png";
 import Reviews from "../components/Reviews";
 import BackArrow from "../components/BackArrow";
 
@@ -23,7 +23,7 @@ const DoctorDetail = () => {
       <BackArrow className="float-left" />
       <h1 className="header4  text-center">Doctor's details</h1>
       <div className="mt-11 flex">
-        <img src={doctor3} alt="" className="w-36" />
+        {/* <img src={doctor3} alt="" className="w-36" /> */}
         <div className="flex py-2">
           <div className="ml-5 flex flex-col">
             <h2 className="header2">{name}</h2>
@@ -58,11 +58,11 @@ const DoctorDetail = () => {
           <div className="mt-10">
             <h2 className="header2 text-base">License No</h2>
             <p className="mt-1">
-              <img
+              {/* <img
                 src={license}
                 alt=""
                 className="rounded10 border-2 shadow-sm"
-              />
+              /> */}
             </p>
           </div>
         </div>
