@@ -65,7 +65,7 @@ const Home = () => {
         />
       </div>
       <h2 className="header2 mt-9">Upcoming Appointments</h2>
-      <Link to="/appointments">
+      <div onClick={() => navigate("/appointments")}>
         <div className="relative">
           <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
           <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
@@ -88,7 +88,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </Link>
+      </div>
 
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">

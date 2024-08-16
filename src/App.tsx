@@ -18,7 +18,7 @@ import VideoFeed from "./components/VideoFeed";
 
 // Pages
 import Home from "./pages/Home";
-import ZoomComponent from "./components/ZoomComponent";
+const ZoomComponent = lazy(() => import("./components/ZoomComponent"));
 const OnboardingHome = lazy(() => import("./pages/OnboardingHome"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
