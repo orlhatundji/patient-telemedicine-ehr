@@ -17,15 +17,18 @@ import doctor3 from "../assets/images/doctor3.png";
 import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
 import { ReactComponent as NotificationIcon } from "../assets/icons/notification.svg";
+import SkeletonLoader from "../components/SkeletonLoader";
 
 const Home = () => {
   const navigate = useNavigate();
   const [assignedDoctors, setAssignedDoctors] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     axiosInstance
       .get("/patient/assigned-doctors")
       .then((res) => {
         setAssignedDoctors(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +68,7 @@ const Home = () => {
         />
       </div>
       <h2 className="header2 mt-9">Upcoming Appointments</h2>
-      <div onClick={() => navigate("/appointments")}>
+      <Link to="/appointments">
         <div className="relative">
           <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
           <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
@@ -88,10 +91,21 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
+        {assignedDoctors.length === 0 && !loading && (
+          <p className="description2 text-center">
+            You have no assigned doctors
+          </p>
+        )}
+        {loading && (
+          Array.from({ length: 3 }).map((_, index) => (
+            <SkeletonLoader key={index} />
+          ))
+        )}
+
         {assignedDoctors?.map((doctor: any) => (
           <div
             key={doctor.id}
