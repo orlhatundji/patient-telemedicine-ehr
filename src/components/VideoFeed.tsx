@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 // Contexts
-import { CallContext } from "../contexts/callContext";
+import { useCallContext } from "../contexts/callContext";
 
 // Assets
 import { ReactComponent as VideoIcon } from "../assets/icons/video_lg.svg";
@@ -15,7 +15,7 @@ import { usePeerConnection } from "../hooks/usePeerConnection";
 import { useLocalCameraStream } from "../hooks/useLocalCameraStream";
 
 const VideoFeed = () => {
-  const { endCall } = useContext(CallContext);
+  const { endCall } = useCallContext();
   const [isGuestPlaying, setIsGuestPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const { localStream, endLocalStream } = useLocalCameraStream();
@@ -61,7 +61,7 @@ const VideoFeed = () => {
               muted={isMuted}
               className="-z-10 w-full h-screen object-cover"
             />
-            {guestStream && (
+            {/* {guestStream && ( */}
               <video
                 ref={(ref) => {
                   if (ref) {
@@ -72,13 +72,13 @@ const VideoFeed = () => {
                 muted={isMuted}
                 className="absolute right-2 top-1 w-36 border-2 border-white/50"
               />
-            )}
+            {/* )} */}
           </div>
           <div
             className={twMerge("absolute top-10 p-11 flex-1", isGuestPlaying && "opacity-0")}
           >
             <div className="z-50">
-              <h1 className="header1 text-4xl">Michael Akinsola</h1>
+              <h1 className="header1 text-4xl">Dr. Abaru</h1>
               <p className="">Educator</p>
               <p className="mt-5 italic border-t border-b w-fit">
                 {!guestStream ? "Calling..." : "Connecting..."}

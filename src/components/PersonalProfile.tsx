@@ -6,7 +6,7 @@ import { Button } from "./Button";
 const records = [
   {
     title: "Name",
-    response: "Michael Akinsola",
+    response: "Yetunde Onibon",
   },
   {
     title: "Age",
@@ -34,7 +34,7 @@ const records = [
   },
   {
     title: "Next of kin",
-    response: "Miss Duro Akinsola"
+    response: "Miss Duro Onibon"
   },
   {
     title: "Relationship with Next of Kin",

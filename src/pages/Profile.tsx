@@ -24,7 +24,7 @@ const Profile = () => {
         />
         <div className="">
           <h2 className="text-lg font-semibold leading-[1.35rem]">
-            Michael Akinsola
+            Yetunde Onibon
           </h2>
           <span className="text-grey-100">Educator</span>
         </div>

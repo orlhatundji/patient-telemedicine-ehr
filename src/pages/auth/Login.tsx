@@ -4,6 +4,10 @@ import { useForm } from "react-hook-form";
 
 // Constants
 import { base_url } from "../../utils/constants";
+import { axiosInstance } from "../../utils/baseAxios";
+
+// Hooks
+import { useAuth } from "../../contexts/authContext";
 
 // Components
 import AuthHeader from "../../components/AuthHeader";
@@ -13,17 +17,27 @@ import Input from "../../components/Input";
 const Login: React.FC = () => {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onChange",
   });
   const navigate = useNavigate();
-
+  const { login } = useAuth();
+const onSubmit = async (data: FormData) => {
+  await axiosInstance.post("/auth/login", data)
+  .then((res) => {
+      login(res.data.access_token);
+      navigate(`/${base_url}/`);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <div className="flex flex-col">
       <AuthHeader />
-      <div className="px-6">
+      <form className="px-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-6">
           <h1 className="header3 mt-12 w-full">Login</h1>
           <p className="text-sm mt-1">
@@ -52,6 +66,7 @@ const Login: React.FC = () => {
             name="password"
             type="password"
             placeholder="Enter your password"
+  
             {...{ register, errors }}
             rules={{
               required: true,
@@ -69,9 +84,9 @@ const Login: React.FC = () => {
           title="Login"
           color="primary"
           className="mt-10"
-          onClick={() => navigate(`/${base_url}`)}
+          type="submit"
         />
-      </div>
+      </form>
     </div>
   );
 };

@@ -26,25 +26,25 @@ const navItems: NavItemsType = {
     active: <HomeActiveIcon />,
     inactive: <HomeInActiveIcon />,
     title: "Home",
-    location: "/patient-telemedicine-ehr",
+    location: "/",
   },
   calendar: {
     active: <CalendarActiveIcon />,
     inactive: <CalendarInActiveIcon />,
     title: "Appointments",
-    location: "/patient-telemedicine-ehr/appointments",
+    location: "/appointments",
   },
   medicalKit: {
     active: <MedicalKitActiveIcon />,
     inactive: <MedicalKitInActiveIcon />,
     title: "Prescription",
-    location: "/patient-telemedicine-ehr/prescription",
+    location: "/prescription",
   },
   profile: {
     active: <ProfileActiveIcon />,
     inactive: <ProfileInActiveIcon />,
     title: "Profile",
-    location: "/patient-telemedicine-ehr/profile",
+    location: "/profile",
   },
 };
 

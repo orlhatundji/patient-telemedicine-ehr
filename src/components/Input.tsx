@@ -60,6 +60,7 @@ const Input: React.FC<InputProps> = ({
           type={showPassword ? "text" : "password"}
           disabled={disabled}
           defaultValue={defaultValue}
+          autoComplete={type === "password" ? "current-password" : ""}
           value={value}
           {...register(name, { ...rules })}
           className={twMerge("w-full", categoryType, className)}

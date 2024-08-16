@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface CallContextType {
   isCallActive: boolean;
@@ -8,19 +8,13 @@ interface CallContextType {
 }
 
 // Create the call context
-export const CallContext = createContext<CallContextType>({
-  isCallActive: false,
-  startCall: () => {},
-  endCall: () => {},
-  children: null,
-});
+export const CallContext = createContext<CallContextType | undefined>(undefined);
 
 export const CallContextProvider: React.FC<CallContextType> = ({ children }) => {
   const [isCallActive, setIsCallActive] = useState(false);
 
   // Function to start the call
   const startCall = () => {
-    // console.log("call started")
     setIsCallActive(true);
   };
 
@@ -34,4 +28,12 @@ export const CallContextProvider: React.FC<CallContextType> = ({ children }) => 
       {children}
     </CallContext.Provider>
   );
+};
+
+export const useCallContext = () => {
+  const context = useContext(CallContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };

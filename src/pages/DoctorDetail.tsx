@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // Components
 import { Button } from "../components/Button";
@@ -14,6 +14,8 @@ import BackArrow from "../components/BackArrow";
 
 const DoctorDetail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id, name, specialty } = location.state;
 
   const [step, setStep] = React.useState(0);
   return (
@@ -24,8 +26,8 @@ const DoctorDetail = () => {
         <img src={doctor3} alt="" className="w-36" />
         <div className="flex py-2">
           <div className="ml-5 flex flex-col">
-            <h2 className="header2">Dr. Abaru Johnson</h2>
-            <span className="text-sm text-grey-200 flex-1">Dentist</span>
+            <h2 className="header2">{name}</h2>
+            <span className="text-sm text-grey-200 flex-1">{specialty}</span>
             <div className="flex gap-x-2">
               <UserIcon />
               <span className="text-sm">3 visits</span>
@@ -74,12 +76,16 @@ const DoctorDetail = () => {
         <Button
           className=""
           color="secondary"
-          onClick={() => navigate("/patient-telemedicine-ehr/schedule-meeting")}
+          onClick={() =>
+            navigate("/schedule-meeting", {
+              state: { id, name, specialty },
+            })
+          }
           title="Schedule appointment"
         />
         <Button
           className=""
-          onClick={() => navigate("/patient-telemedicine-ehr/write-complain")}
+          onClick={() => navigate("/write-complain")}
           title="Write complaint"
         />
       </div>

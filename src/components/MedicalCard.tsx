@@ -80,7 +80,7 @@ const MedicalCard = () => {
                 "ml-auto text-primary text-xs font-semibold w-fit bg-transparent",
                 "p-0"
               )}
-              onClick={() => navigate("/patient-telemedicine-ehr/medical-history-form")}
+              onClick={() => navigate("/medical-history-form")}
               title="Edit"
             />
           </div>

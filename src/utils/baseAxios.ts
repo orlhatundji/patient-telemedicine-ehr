@@ -1,11 +1,24 @@
-/* eslint-disable no-undef */
 import axios from "axios";
-// export const baseUrl = process.env.REACT_APP_BACKEND_API_URL
-export const baseUrl = 'http://localhost:3001';
+export const baseUrl = process.env.REACT_APP_BACKEND_API_URL
+export const baseFEUrl = 'https://orlhatundji.github.io';
 
-axios.defaults.withCredentials = true
 export const axiosInstance = axios.create({
-  withCredentials: true,
   baseURL: baseUrl,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
+
+axiosInstance.interceptors.request.use( 
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);  
 

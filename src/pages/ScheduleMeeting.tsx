@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -9,30 +9,22 @@ import { Button } from "../components/Button";
 import { twMerge } from "tailwind-merge";
 import dayjs from "dayjs";
 import ActionStatus from "../components/ActionStatus";
+import { axiosInstance } from "../utils/baseAxios";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const ScheduleMeeting = () => {
-  // const navigate = useNavigate();
-  const [value, onChange] = useState<Value>(new Date());
+  const location = useLocation();
+  const { id, name, specialty } = location.state;
+  const [date, onDateChange] = useState<Value>(new Date());
   const [time, setTime] = useState<string | null>(null);
   const [page, setPage] = useState<"date" | "time">("date");
   const [scheduleSuccess, setScheduleSuccess] = useState(false);
-  // const ere = [
-  //   {
-  //     id: 1,
-  //     title: "Meeting",
-  //     person: { name: "Gbenga Akintubi" },
-  //     agenda:
-  //       "Lorem ipsum dolor sit amet consectetur. Placerat quis non sed erat. Elementum nisi sapien enim at faucibus facilisi nisl pulvinar. Sed penatibus nisi ultrices phasellus lacus. Commodo quis a est rhoncus viverra nibh in imperdiet tristique. Netus non duis iaculis in fringilla nec ut in a.",
-  //     start: new Date(2024, 6, 1, 10, 0), // July 1, 2024, 10:00 AM
-  //     end: new Date(2024, 6, 1, 12, 0), // July 1, 2024, 12:00 PM
-  //   },
-  // ];
+
   const handleDateClick = (date: Value) => {
     setPage("time");
-    onChange(date);
+    onDateChange(date);
   };
   const convertTo24HourFormat = (
     time: string
@@ -47,47 +39,66 @@ const ScheduleMeeting = () => {
     if (avSet.has(t)) return;
     setTime(t);
     const { hour, minute } = convertTo24HourFormat(t);
-    const date = dayjs(value as Date)
+    const dt = dayjs(date as Date)
       .set("hour", hour)
       .set("minute", minute)
       .toDate();
-    onChange(date);
+    onDateChange(dt);
   };
   const [availableTimes] = useState([
-    "8:00 AM",
-    "8:30 AM",
-    "9:00 AM",
-    "9:30 AM",
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "12:00 PM",
-    "12:30 PM",
-    "1:00 PM",
-    "1:30 PM",
-    "2:00 PM",
-    "2:30 PM",
-    "3:00 PM",
-    "3:30 PM",
+    { label: "8:00 AM", value: "8:00 AM" },
+    { label: "8:30 AM", value: "8:30 AM" },
+    { label: "9:00 AM", value: "9:00 AM" },
+    { label: "9:30 AM", value: "9:30 AM" },
+    { label: "10:00 AM", value: "10:00 AM" },
+    { label: "10:30 AM", value: "10:30 AM" },
+    { label: "11:00 AM", value: "11:00 AM" },
+    { label: "11:30 AM", value: "11:30 AM" },
+    { label: "12:00 PM", value: "12:00 PM" },
+    { label: "12:30 PM", value: "12:30 PM" },
+    { label: "1:00 PM", value: "13:00" },
+    { label: "1:30 PM", value: "13:30 PM" },
+    { label: "2:00 PM", value: "14:00 PM" },
+    { label: "2:30 PM", value: "14:30 PM" },
+    { label: "3:00 PM", value: "15:00 PM" },
+    { label: "3:30 PM", value: "15:30 PM" },
   ]);
 
-  const unavailableTimes = [
-    "Sat Aug 10 2024 09:30:00 GMT+0100",
-    "Sat Aug 10 2024 10:00:00 GMT+0100",
-    "Sat Aug 10 2024 14:30:00 GMT+0100",
-  ];
+  const [unavailableTimes, setUnavailableTimes] = useState<string[]>([]);
   const [avSet, setAvSet] = useState(new Set());
   useEffect(() => {
     const temp = new Set();
-    unavailableTimes.forEach((t) => {
-      const time = dayjs(t).format("h:mm A");
+    unavailableTimes.forEach((apptm: any) => {
+      const time = dayjs(apptm.date).format("h:mm A");
       temp.add(time);
     });
     setAvSet(temp);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [unavailableTimes]);
+  const handleScheduleSubmit = async () => {
+    await axiosInstance.post("/appointment", {
+      date, 
+      doctorId: id
+    }).then(() => {
+      setScheduleSuccess(true);
+    }).catch((err) => {
+      console.log(err);
+    })
+  };
 
+  useEffect(() => {
+    axiosInstance
+      .post("/appointment/day/doctor", {
+        doctorId: id,
+        date,
+      })
+      .then((res) => {
+        setUnavailableTimes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } , [date, id]);
+  
   return (
     <>
       <div
@@ -102,7 +113,7 @@ const ScheduleMeeting = () => {
         <div className="relative flex overflow-x-hidden">
           <Calendar
             onChange={handleDateClick}
-            value={value}
+            value={date}
             className={twMerge(
               "text-xl border-white transition-all duration-500 rounded-lg",
               page === "time" ? "-translate-x-[110%]" : ""
@@ -117,7 +128,7 @@ const ScheduleMeeting = () => {
             <div className="text-sm">
               <p className="">In your local time zone (Africa/Lagos)</p>
               <p className="text-base mt-2">
-                {dayjs(value as Date).format("dddd, MMMM D, YYYY")}{" "}
+                {dayjs(date as Date).format("dddd, MMMM D, YYYY")}{" "}
                 <span
                   className="font-black ml-3"
                   onClick={() => setPage("date")}
@@ -128,16 +139,16 @@ const ScheduleMeeting = () => {
               <div className="grid grid-cols-4 gap-x-2 gap-y-4 mt-8">
                 {availableTimes.map((t, i) => (
                   <button
-                    key={t}
+                    key={t.value}
                     className={twMerge(
                       "border rounded-lg py-2 text-center cursor-pointer transition-all duration-300",
                       " border-primary whitespace-nowrap",
-                      t === time ? "bg-primary/10 font-black" : "",
-                      avSet.has(t) ? "bg-black/10 font-black" : ""
+                      t.value === time ? "bg-primary/10 font-black" : "",
+                      avSet.has(t.label) ? "bg-black/10 font-black" : ""
                     )}
-                    onClick={() => handleTimeClick(t, i)}
+                    onClick={() => handleTimeClick(t.value, i)}
                   >
-                    {t}
+                    {t.label}
                   </button>
                 ))}
               </div>
@@ -149,7 +160,7 @@ const ScheduleMeeting = () => {
           className={twMerge(page === "date" ? "my-4" : "mb-4")}
           onClick={() => {
             if (page === "time" && time) {
-              setScheduleSuccess(true);
+              handleScheduleSubmit();
             }
           }}
         />
@@ -157,8 +168,8 @@ const ScheduleMeeting = () => {
           <div className="flex gap-x-4 items-center ">
             <img src={doctor1} alt="doctor" className="max-w-[55px]" />
             <div className="">
-              <h2 className="header2">Dr. Abaru Johnson</h2>
-              <p className="description2 text-grey-200 mt-1">Optician</p>
+              <h2 className="header2">{name}</h2>
+              <p className="description2 text-grey-200 mt-1">{specialty}</p>
             </div>
           </div>
           <hr className="mt-4" />
@@ -169,7 +180,7 @@ const ScheduleMeeting = () => {
       </div>
       {scheduleSuccess && (
         <AppointmentScheduleSuccess
-          date={dayjs(value as Date).format("dddd, MMMM D, YYYY")}
+          date={dayjs(date as Date).format("dddd, MMMM D, YYYY")}
         />
       )}
     </>

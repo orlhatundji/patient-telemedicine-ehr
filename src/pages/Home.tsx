@@ -1,21 +1,36 @@
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
+// Utils
+import { axiosInstance } from "../utils/baseAxios";
+
 // Components
 import { Button } from "../components/Button";
-import BottomNav from "../components/BottomNav";
 import DateView from "../components/DateView";
+import BottomNav from "../components/BottomNav";
 import DoctorWithRating from "../components/DoctorWithRating";
 
 // Assets
-import { ReactComponent as NotificationIcon } from "../assets/icons/notification.svg";
-import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
-import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 import doctor1 from "../assets/images/doctor1.png";
 import doctor3 from "../assets/images/doctor3.png";
+import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
+import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
+import { ReactComponent as NotificationIcon } from "../assets/icons/notification.svg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [assignedDoctors, setAssignedDoctors] = React.useState([]);
+  useEffect(() => {
+    axiosInstance
+      .get("/patient/assigned-doctors")
+      .then((res) => {
+        setAssignedDoctors(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="px-6 top-padding bottom-nav-padding">
       <div className="flex justify-between">
@@ -50,7 +65,7 @@ const Home = () => {
         />
       </div>
       <h2 className="header2 mt-9">Upcoming Appointments</h2>
-      <Link to="/patient-telemedicine-ehr/appointments">
+      <Link to="/appointments">
         <div className="relative">
           <div className="absolute top-0 -bottom-2 left-6 right-6 bg-off-white-300/[35%] rounded10 -z-10" />
           <div className="absolute top-0 -bottom-4 left-8 right-8 bg-off-white-300/[6.67%] rounded10 -z-10" />
@@ -77,44 +92,29 @@ const Home = () => {
 
       <h2 className="header2 mt-9">Assigned Doctors</h2>
       <div className="flex flex-col gap-y-6 mt-4">
-        <Link to="/patient-telemedicine-ehr/doctor-detail">
-          <div className="flex items-center justify-between">
-            <DoctorWithRating
-              rating={4}
-              name="Dr. Abaru Johnson"
-              specialty="Dentist"
-              img_url={doctor3}
-            />
-            <div className="flex items-center gap-x-2 ml-auto">
-              <UserIcon />
-              <span className="text-sm">3 visits</span>
+        {assignedDoctors?.map((doctor: any) => (
+          <div
+            key={doctor.id}
+            onClick={() =>
+              navigate(`/doctor-detail/${doctor.id}`, {
+                state: doctor,
+              })
+            }
+          >
+            <div className="flex items-center justify-between">
+              <DoctorWithRating
+                rating={4}
+                name={doctor.name}
+                specialty={doctor.specialty}
+                img_url={doctor3}
+              />
+              <div className="flex items-center gap-x-2 ml-auto">
+                <UserIcon />
+                <span className="text-sm">{doctor.visits} visits</span>
+              </div>
             </div>
           </div>
-        </Link>
-        <div className="flex items-center justify-between">
-          <DoctorWithRating
-            rating={5}
-            name="Dr. Abaru Johnson"
-            specialty="Pediatrician"
-            img_url={doctor3}
-          />
-          <div className="flex items-center gap-x-2 ml-auto">
-            <UserIcon />
-            <span className="text-sm">30 visits</span>
-          </div>
-        </div>
-        <div className="flex items-center justify-between">
-          <DoctorWithRating
-            rating={4}
-            name="Dr. Abaru Johnson"
-            specialty="Orthopedic"
-            img_url={doctor3}
-          />
-          <div className="flex items-center gap-x-2 ml-auto">
-            <UserIcon />
-            <span className="text-sm">13 visits</span>
-          </div>
-        </div>
+        ))}
       </div>
       <BottomNav />
     </div>
