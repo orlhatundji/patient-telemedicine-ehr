@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 // Utils
 import { axiosInstance } from "../utils/baseAxios";
+import { useAuth } from "../contexts/authContext";
 
 // Components
 import { Button } from "../components/Button";
@@ -21,6 +22,7 @@ import SkeletonLoader from "../components/SkeletonLoader";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [assignedDoctors, setAssignedDoctors] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
@@ -43,7 +45,7 @@ const Home = () => {
         </div>
         <div className="relative mt-2">
           <NotificationIcon
-            onClick={() => navigate("patient-telemedicine-ehr/login")}
+            onClick={() => logout()}
           />
           <div
             className={twMerge(
