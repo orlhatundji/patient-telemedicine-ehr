@@ -16,7 +16,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const ScheduleMeeting = () => {
   const location = useLocation();
-  const { id, name, specialty } = location.state;
+  const { id, user, specialty } = location.state;
   const [date, onDateChange] = useState<Value>(new Date());
   const [time, setTime] = useState<string | null>(null);
   const [page, setPage] = useState<"date" | "time">("date");
@@ -63,7 +63,7 @@ const ScheduleMeeting = () => {
     { label: "3:00 PM", value: "15:00 PM" },
     { label: "3:30 PM", value: "15:30 PM" },
   ]);
-
+  const [loading, setLoading] = useState(false);
   const [unavailableTimes, setUnavailableTimes] = useState<string[]>([]);
   const [avSet, setAvSet] = useState(new Set());
   useEffect(() => {
@@ -75,6 +75,8 @@ const ScheduleMeeting = () => {
     setAvSet(temp);
   }, [unavailableTimes]);
   const handleScheduleSubmit = async () => {
+    if(!date && id) return;
+    setLoading(true);
     await axiosInstance.post("/appointment", {
       date, 
       doctorId: id
@@ -83,6 +85,7 @@ const ScheduleMeeting = () => {
     }).catch((err) => {
       console.log(err);
     })
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -158,6 +161,7 @@ const ScheduleMeeting = () => {
         <Button
           title={page === "date" ? "Continue" : "Book Appointment"}
           className={twMerge(page === "date" ? "my-4" : "mb-4")}
+          loading={loading}
           onClick={() => {
             if (page === "time" && time) {
               handleScheduleSubmit();
@@ -168,7 +172,7 @@ const ScheduleMeeting = () => {
           <div className="flex gap-x-4 items-center ">
             <img src={doctor1} alt="doctor" className="max-w-[55px]" />
             <div className="">
-              <h2 className="header2">{name}</h2>
+              <h2 className="header2">{user?.name}</h2>
               <p className="description2 text-grey-200 mt-1">{specialty}</p>
             </div>
           </div>

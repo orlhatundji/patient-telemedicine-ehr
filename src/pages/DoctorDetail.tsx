@@ -15,7 +15,7 @@ import BackArrow from "../components/BackArrow";
 const DoctorDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id, name, specialty } = location.state;
+  const { id, user, specialty } = location.state;
 
   const [step, setStep] = React.useState(0);
   return (
@@ -26,7 +26,7 @@ const DoctorDetail = () => {
         <img src={doctor3} alt="" className="w-36" />
         <div className="flex py-2">
           <div className="ml-5 flex flex-col">
-            <h2 className="header2">{name}</h2>
+            <h2 className="header2">{user?.name}</h2>
             <span className="text-sm text-grey-200 flex-1">{specialty}</span>
             <div className="flex gap-x-2">
               <UserIcon />
@@ -78,7 +78,7 @@ const DoctorDetail = () => {
           color="secondary"
           onClick={() =>
             navigate("/schedule-meeting", {
-              state: { id, name, specialty },
+              state: { id, user, specialty },
             })
           }
           title="Schedule appointment"

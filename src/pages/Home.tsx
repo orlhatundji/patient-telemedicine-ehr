@@ -120,7 +120,7 @@ const Home = () => {
             <div className="flex items-center justify-between">
               <DoctorWithRating
                 rating={4}
-                name={doctor.name}
+                name={doctor.user?.name}
                 specialty={doctor.specialty}
                 img_url={doctor3}
               />
