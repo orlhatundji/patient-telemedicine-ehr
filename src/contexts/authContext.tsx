@@ -16,8 +16,14 @@ type AuthProviderProps = {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  const login = (token: string) => {
-    localStorage.setItem('accessToken', token);
+  const login = (data: any) => {
+    const { access_token, email, id, role, name } = data
+    localStorage.setItem('accessToken', access_token);
+    localStorage.setItem('email', email);
+    localStorage.setItem('id', id.toString());
+    localStorage.setItem('role', role);
+    localStorage.setItem('name', name);
+
     setIsAuthenticated(true);
   };
 

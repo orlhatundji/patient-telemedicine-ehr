@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
 
 // Utils
-import { axiosInstance } from "../utils/baseAxios";
+import { getTimeOfDay } from "../utils/helpers";
 import { useAuth } from "../contexts/authContext";
+import { axiosInstance } from "../utils/baseAxios";
 
 // Components
 import { Button } from "../components/Button";
@@ -15,16 +15,17 @@ import DoctorWithRating from "../components/DoctorWithRating";
 // Assets
 import doctor1 from "../assets/images/doctor1.png";
 import doctor3 from "../assets/images/doctor3.png";
-import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
-import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
-import { ReactComponent as NotificationIcon } from "../assets/icons/notification.svg";
 import SkeletonLoader from "../components/SkeletonLoader";
+import { ReactComponent as ClockIcon } from "../assets/icons/time.svg";
+import { ReactComponent as LogoutIcon } from "../assets/icons/logout.svg";
+import { ReactComponent as UserIcon } from "../assets/icons/user_outline.svg";
 
 const Home = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [assignedDoctors, setAssignedDoctors] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const patientName = localStorage.getItem('name')
   useEffect(() => {
     axiosInstance
       .get("/patient/assigned-doctors")
@@ -32,35 +33,25 @@ const Home = () => {
         setAssignedDoctors(res.data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div className="px-6 top-padding bottom-nav-padding">
       <div className="flex justify-between">
         <div className="">
-          <span className="description1">Good morning, Simon</span>
+          <span className="description1">Good {getTimeOfDay()}, {patientName}</span>
           <h1 className="header1 mt-1">Stay Healthy</h1>
         </div>
         <div className="relative mt-2">
-          <NotificationIcon
+          <LogoutIcon
+          className="rotate-180"
             onClick={() => logout()}
           />
-          <div
-            className={twMerge(
-              "rounded-full bg-primary p-1 h-3 w-3 min-h-[.75rem] min-w-[.75rem]",
-              "flex items-center justify-center text-[.5rem] text-white",
-              "absolute -top-1 left-3"
-            )}
-          >
-            4
-          </div>
         </div>
       </div>
       <div className="mt-6 rounded10 bg-secondary-300 flex items-center justify-between px-4 py-3">
         <p className="description2 leading-[.95rem] max-w-[60%]">
-          Dr. Kelly Johnson is requesting an appointment with you
+          Dr. Kenny Johnson is requesting an appointment with you
         </p>
         <Button
           title="Accept"

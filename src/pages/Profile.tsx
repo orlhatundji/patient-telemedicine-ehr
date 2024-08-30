@@ -13,6 +13,7 @@ import person from "../assets/images/person.png";
 
 const Profile = () => {
   const [step, setStep] = useState(0);
+  const patientName = localStorage.getItem('name')
   return (
     <div className="px-6 top-padding bottom-nav-padding flex flex-col h-screen overflow-hidden">
       <h1 className="header1">Profile</h1>
@@ -24,7 +25,7 @@ const Profile = () => {
         />
         <div className="">
           <h2 className="text-lg font-semibold leading-[1.35rem]">
-            Yetunde Onibon
+            { patientName }
           </h2>
           <span className="text-grey-100">Educator</span>
         </div>

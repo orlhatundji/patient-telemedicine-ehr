@@ -1,6 +1,6 @@
-import { Button } from "./Button";
-import { twMerge } from "tailwind-merge";
-import { useNavigate } from "react-router-dom";
+// import { Button } from "./Button";
+// import { twMerge } from "tailwind-merge";
+// import { useNavigate } from "react-router-dom";
 
 const records = [
   {
@@ -67,14 +67,14 @@ const records = [
   },
 ];
 const MedicalCard = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div className="flex flex-col divide-y-2 divide-stroke-300/10 flex-1 overflow-auto h-full ">
       {records.map((record, i) => (
         <div key={i} className="flex flex-col gap-y-2 py-4">
           <div className="flex">
             <h3 className="font-semibold">{record.title}</h3>
-            <Button
+            {/* <Button
               type="button"
               className={twMerge(
                 "ml-auto text-primary text-xs font-semibold w-fit bg-transparent",
@@ -82,7 +82,7 @@ const MedicalCard = () => {
               )}
               onClick={() => navigate("/medical-history-form")}
               title="Edit"
-            />
+            /> */}
           </div>
           <div className="flex flex-wrap gap-1  max-w-[90%] ">
             {record.response.map((response, i) => (

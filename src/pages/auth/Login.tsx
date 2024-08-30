@@ -28,11 +28,9 @@ const Login: React.FC = () => {
 const onSubmit = async (data: FormData) => {
   await axiosInstance.post("/auth/login", data)
   .then((res) => {
-      login(res.data.access_token);
+      login(res.data);
       navigate(`/${base_url}/`);
-    }).catch((err) => {
-      console.log(err);
-    })
+    }).catch((err) => {})
   }
   return (
     <div className="flex flex-col">

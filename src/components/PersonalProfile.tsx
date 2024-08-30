@@ -1,7 +1,7 @@
-import { twMerge } from "tailwind-merge";
+// import { twMerge } from "tailwind-merge";
 
 // Components
-import { Button } from "./Button";
+// import { Button } from "./Button";
 
 const records = [
   {
@@ -47,16 +47,7 @@ const PersonalProfile = () => {
       {records.map((record, i) => (
         <div key={i} className="flex flex-col py-4">
           <div className="flex">
-            <h3 className="font-semibold leading-[0rem]">{record.title}</h3>
-            <Button
-              type="button"
-              className={twMerge(
-                "ml-auto text-primary text-xs font-semibold w-fit bg-transparent",
-                "p-0"
-              )}
-              onClick={() => {}}
-              title="Edit"
-            />
+            <h3 className="font-semibold">{record.title}</h3>
           </div>
           <span className="text-grey-100 text-sm">{record.response}</span>
         </div>

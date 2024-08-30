@@ -55,8 +55,8 @@ const App: React.FC = () => {
           <p className="shadow-lg p-4">This application is only available on mobi le</p>
         </div>
       ) : null}
+      <InstallButton />
       <Router basename="/">
-        <InstallButton />
         {isCallActive && <VideoFeed />}
         <Suspense fallback={<Loader />}>
           <Routes>
